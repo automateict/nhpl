@@ -1,0 +1,36 @@
+<% if current_user.admin? %>
+    <div class="header">
+        <h2>
+            Events
+        </h2>
+    </div>
+    <div class="body table-responsive">
+      <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+  <thead>
+    <tr>
+      <th>Academic year</th>
+      <th>Name</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.academic_year %></td>
+        <td><%= event.name %></td>
+        <td><%= event.start_time %></td>
+        <td><%= event.end_time %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'New Event', new_event_path, class: 'btn btn-primary' %>
+<% end %>
+</div>
+

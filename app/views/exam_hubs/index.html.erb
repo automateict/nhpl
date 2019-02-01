@@ -1,0 +1,39 @@
+<% if current_user.admin? %>
+    <div class="header">
+      <h2>
+        Exam Hubs
+      </h2>
+    </div>
+    <div class="body table-responsive">
+      <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Region</th>
+      <th>City</th>
+      <th>Ceiling</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @exam_hubs.each do |exam_hub| %>
+      <tr>
+        <td><%= exam_hub.name %></td>
+        <td><%= exam_hub.region %></td>
+        <td><%= exam_hub.city %></td>
+        <td><%= exam_hub.ceiling %></td>
+        <td>
+          <%= link_to 'Edit', edit_exam_hub_path(exam_hub) %>
+          <%= link_to 'Delete', exam_hub, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Exam Hub', new_exam_hub_path, class: 'btn btn-primary' %>
+    </div>
+<% end %>

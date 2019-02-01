@@ -1,0 +1,13 @@
+<%= simple_form_for(@passing_mark) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :academic_year %>
+    <%= f.association :program %>
+    <%= f.input :passing_mark %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

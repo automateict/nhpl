@@ -1,0 +1,33 @@
+<%= simple_form_for @applicant do |f| %>
+    <%= f.error_notification %>
+    <%= f.full_error :user_id %>
+    <%= f.input :academic_year_id, as: :hidden, input_html: {value: AcademicYear.current.try(:id)} %>
+    <%= f.input :title, label: 'Title', collection: ['Dr'] %>
+    <%= f.input :user_id, as: :hidden,input_html: { value: current_user.id } %>
+    <%= f.input :first_name %>
+    <%= f.input :father_name %>
+    <%= f.input :grand_father_name %>
+    <%= f.input :gender, collection: ['Male', 'Female'] %>
+    <%= f.input :date_of_birth, as: :string, input_html: {class: "datepicker"} %>
+    <%= f.input :place_of_birth %>
+    <%= f.input :marital_status, collection: ['Single', 'Married', 'Divorced'] %>
+  <%= f.input :nationality %>
+      <legend>Current Address</legend>
+      <%= f.association :region %>
+      <%= f.input :city %>
+      <%= f.input :street %>
+      <%= f.input :pobox %>
+      <%= f.input :phone %>
+    <hr/>
+
+  <legend>Educational Background</legend>
+  <%= f.association :program %>
+  <%= f.association :university %>
+  <%= f.input :university_type, collection: ['Public', 'Private'] %>
+  <%= f.input :qualification %>
+  <%= f.input :date_of_completion, as: :string, input_html: {class: "datepicker"} %>
+  <%= f.association :applicant_type %>
+  <%= f.association :exam_type %>
+  <hr/>
+    <%= f.button :submit, 'Save and Continue', disable_with: 'Processing...' %>
+<% end %>

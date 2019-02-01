@@ -1,0 +1,60 @@
+    <h5>Personal Information</h5>
+  <table border="1" width="100%" style="border-collapse: collapse">
+    <tr>
+      <th>ID Number</th>
+      <td><%= @applicant.id %></td>
+    </tr>
+    <tr>
+      <th>Title</th>
+      <td><%= @applicant.title %></td>
+    </tr>
+    <tr>
+      <th>First Name</th>
+      <td><%= @applicant.first_name %></td>
+    </tr>
+
+    <tr>
+      <th>Father Name</th>
+      <td><%= @applicant.father_name %></td>
+    </tr>
+    <tr>
+      <th>Grand Father Name</th>
+      <td><%= @applicant.grand_father_name %></td>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <td><%= @applicant.gender %></td>
+    </tr>
+    <tr>
+      <th>Place of Birth</th>
+      <td><%= @applicant.place_of_birth %></td>
+    </tr>
+    <tr>
+      <th>Marital Status</th>
+      <td><%= @applicant.marital_status %></td>
+    </tr>
+  </table>
+
+    <h5>Current Address</h5>
+    <table border="1" width="100%" style="border-collapse: collapse">
+      <tr>
+        <th>Region</th>
+        <td><%= @applicant.region %></td>
+      </tr>
+      <tr>
+        <th>City</th>
+        <td><%= @applicant.city %></td>
+      </tr>
+      <tr>
+        <th>P.O.Box</th>
+        <td><%= @applicant.pobox %></td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td><%= @applicant.phone %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= @applicant.user.email %></td>
+      </tr>
+    </table>

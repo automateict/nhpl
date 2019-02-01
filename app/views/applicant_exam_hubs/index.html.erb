@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Applicant Exam Hubs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Applicant</th>
+      <th>Exam hub</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @applicant_exam_hubs.each do |applicant_exam_hub| %>
+      <tr>
+        <td><%= applicant_exam_hub.applicant %></td>
+        <td><%= applicant_exam_hub.exam_hub %></td>
+        <td><%= link_to 'Show', applicant_exam_hub %>
+        <%= link_to 'Edit', edit_applicant_exam_hub_path(applicant_exam_hub) %>
+        <%= link_to 'Destroy', applicant_exam_hub, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Applicant Exam Hub', new_applicant_exam_hub_path %>

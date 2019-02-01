@@ -1,0 +1,29 @@
+<% if current_user.admin? %>
+    <div class="header">
+        <h2>
+            Programs
+        </h2>
+    </div>
+    <div class="body table-responsive">
+      <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @programs.each do |program| %>
+      <tr>
+        <td><%= program.name %></td>
+        <td><%= link_to 'Edit', edit_program_path(program) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<br>
+
+<%= link_to 'New Program', new_program_path, class: 'btn btn-primary' %>
+</div>

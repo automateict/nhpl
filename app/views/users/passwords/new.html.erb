@@ -1,0 +1,18 @@
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<div class="msg">
+    Enter your email address that you used to register. We'll send you an email with reset password instructions.
+</div>
+<div class="input-group">
+    <span class="input-group-addon">
+        <i class="material-icons">email</i>
+    </span>
+    <div class="form-line">
+      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email", required: true %>
+    </div>
+</div>
+<%= f.submit "Send me reset password instructions", class: "btn btn-block btn-lg bg-pink waves-effect" %>
+
+<div class="row m-t-20 m-b--5 align-center">
+<%= link_to "Sign In!", new_user_session_path %>
+</div>
+<% end %>

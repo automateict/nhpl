@@ -1,0 +1,14 @@
+<%= simple_form_for(@placement) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :applicant, collection: @applicants.map{|x| [x.full_name, x.id]} %>
+    <%= f.association :program %>
+    <%= f.association :university %>
+    <%= f.input :published, wrapper: :horizontal_boolean, label_html: {class: 'transparent_label'}, input_html:{class: "filled-in chk-col-pink"} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

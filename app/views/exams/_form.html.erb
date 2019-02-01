@@ -1,0 +1,16 @@
+<%= simple_form_for(@exam) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :applicant, collection: @applicants.map{|x| [x.full_name, x.id]} %>
+    <%= f.input :exam_result %>
+    <%= f.input :exam_out_of %>
+    <%= f.input :interview_result %>
+    <%= f.input :interview_out_of %>
+    <%= f.input :total %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

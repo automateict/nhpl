@@ -1,0 +1,193 @@
+
+<% content_for :header do %>
+    <div class="block-header">
+      <h2><%= AcademicYear.current %> Academic Year</h2>
+    </div>
+
+    <div class="row clearfix">
+      <% if current_user.admin? %>
+          <%= link_to applicants_path do %>
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-teal hover-expan-effect">
+                  <div class="icon">
+                    <i class="material-icons">people</i>
+                  </div>
+                  <div class="content">
+                    <div class="text">Applicants</div>
+                    <div class="number"><%= AcademicYear.current.blank? ? 0 : AcademicYear.current.applicants.count  %></div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          <%= link_to programs_path do %>
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-pink hover-expand-effect">
+                  <div class="icon">
+                    <i class="material-icons">playlist_add_check</i>
+                  </div>
+                  <div class="content">
+                    <div class="text">Programs</div>
+                    <div class="number"><%= Program.count %></div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          <%= link_to universities_path do %>
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-cyan hover-expand-effect">
+                  <div class="icon">
+                    <i class="material-icons">school</i>
+                  </div>
+                  <div class="content">
+                    <div class="text">Universities</div>
+                    <div class="number"><%= University.count %></div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          <%= link_to programs_path do %>
+              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-light-green hover-expand-effect">
+                  <div class="icon">
+                    <i class="material-icons">format_list_numbered</i>
+                  </div>
+                  <div class="content">
+                    <div class="text">Total Quotas</div>
+                    <div class="number"><%= Program.count %></div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+    </div>
+<% end %>
+
+<% content_for :header do %>
+<div class="row clearfix">
+<% unless current_user.admin? %>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="card">
+            <div class="body table-responsive">
+                <h4><i class="material-icons">person</i>
+                <span>My Application</span>
+                <hr/></h4>
+              <% if current_user.current_application %>
+                  <table class='table'>
+                    <thead>
+                    <tr>
+                      <th>Application Details</th>
+                      <th>Application Status</th>
+                      <th>Matching Status</th>
+                      <th>Matched Program </th>
+                      <th>Matched University </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <% unless current_user.current_application.blank? %>
+                        <tr>
+                          <td><%= link_to 'Application Details', details_applicant_path(current_user.current_application) rescue nil %></td>
+                          <td><%= current_user.current_application.application_status rescue nil %></td>
+                          <td><%= current_user.current_application.matching_status rescue nil %></td>
+                          <td><%= current_user.current_application.published_placemet.program rescue nil %></td>
+                          <td><%= current_user.current_application.published_placemet.university rescue nil %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+              <% end %>
+              <% if current_user.current_application.blank? %>
+              <% unless @application_calendar.blank? %>
+                  <% if @application_calendar.try(:start_time) <= Date.today and @application_calendar.try(:end_time) >= Date.today %>
+                      <%= link_to 'Start New Application', instructions_applicants_path, class: 'btn btn-primary' if current_user.current_application.blank? %>
+                  <% else %>
+                      <i class="material-icons">info</i>
+                      <i>Application is not Available. Please check calendar</i>
+                  <% end %>
+              <% else %>
+                  <i class="material-icons">info</i>
+                  <i>Application is not Available. Please check calendar</i>
+              <% end %>
+          <% end %>
+            </div>
+          </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="card">
+            <div class="body table-responsive">
+                <h4><i class="material-icons">event_note</i>
+                <span>Calendar</span><hr/></h4>
+              <table class="table table-bordered table-striped table-hover dataTable">
+            <thead>
+            <tr>
+              <th>Event</th>
+              <th>Start time</th>
+              <th>End time</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @events.each do |event| %>
+                <tr>
+                  <td><%= event.name %></td>
+                  <td><%= event.start_time %></td>
+                  <td><%= event.end_time %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+            </div>
+          </div>
+      </div>
+  <% end %>
+      </div>
+  <% end %>
+
+
+<% content_for :header do %>
+<div class="card">
+<div class="body table-responsive">
+  <legend>Applicants program choice statstics</legend>
+<table class='table table-striped table-bordered dataTable js-exportable'>
+  <thead>
+  <tr>
+    <th>Program Name</th>
+    <th>1st</th>
+    <th>2nd</th>
+    <th>3rd</th>
+  </tr>
+  </thead>
+  <% Program.all.each do |p| %>
+      <tr>
+        <td><%= p %></td>
+        <td><%= p.count_applicants(1) %></td>
+        <td><%= p.count_applicants(2) %></td>
+        <td><%= p.count_applicants(3) %></td>
+      </tr>
+  <% end %>
+</table><br/><br/>
+</div>
+</div>
+<% end %>
+
+<% content_for :header do %>
+    <div class="card">
+      <div class="body table-responsive">
+        <legend>Exam Hub Choices statstics</legend>
+        <table class='table table-striped table-bordered dataTable js-exportable'>
+          <thead>
+          <tr>
+            <th>Exam Hub Name</th>
+            <th>Total Number of Choices</th>
+          </tr>
+          </thead>
+          <% ExamHub.all.each do |e| %>
+              <tr>
+                <td><%= e %></td>
+                <td><%= e.applicant_exam_hubs.count %></td>
+              </tr>
+          <% end %>
+        </table><br/><br/>
+      </div>
+    </div>
+<% end %>

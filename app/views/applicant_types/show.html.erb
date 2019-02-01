@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @applicant_type.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @applicant_type.description %>
+</p>
+
+<%= link_to 'Edit', edit_applicant_type_path(@applicant_type) %> |
+<%= link_to 'Back', applicant_types_path %>

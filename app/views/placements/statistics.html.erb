@@ -1,0 +1,33 @@
+<div class="header">
+  <h2>
+    Matching Statistics
+  </h2>
+</div>
+<div class="body table-responsive">
+  <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+    <thead>
+    <tr>
+      <th>Program</th>
+      <th>University</th>
+      <th>Quota</th>
+      <th>Matched</th>
+      <th>Free</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @program_quotas.each do |program_quota| %>
+        <tr>
+          <td><%= program_quota.program %></td>
+          <td><%= program_quota.university %></td>
+          <td><%= program_quota.quota %></td>
+          <td><%= program_quota.program.total_placed(program_quota.university) %></td>
+          <td><%= program_quota.program.remaining_quota(program_quota.university) %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <br>
+
+  <%= link_to 'New Program Quota', new_program_quota_path, class: 'btn btn-primary' if current_user.admin? %>
+</div>

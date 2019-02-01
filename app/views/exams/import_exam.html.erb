@@ -1,0 +1,57 @@
+<div class="body">
+  <h5>Save your Exam results in CSV format in the same order as follows:</h5>
+<table class="table">
+  <tr>
+    <th>Applicant ID</th>
+    <th>Email</th>
+    <th>Exam Total</th>
+    <th>Out of</th>
+  </tr>
+  <tr>
+    <td>001</td>
+    <td>example@nrmp.com</td>
+    <td>80</td>
+    <td>100</td>
+  </tr>
+</table>
+
+<div class="body">
+  <%= form_tag import_exam_exams_path,:multipart=>true do %>
+      <labe>CSV File</labe>
+      <%= file_field_tag(:exam_csv_file) %>
+    <hr/>
+    <%= submit_tag 'Import',class: 'btn' %>
+  <% end %>
+</div>
+
+<% unless @exams.blank? %>
+<div class="header">
+  <h2>
+    Imported Exams
+  </h2>
+</div>
+<div class="body table-responsive">
+  <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+    <thead>
+    <tr>
+      <th>Applicant</th>
+      <th>Email</th>
+      <th>Exam total</th>
+      <th>Exam out of</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @exams.each do |exam| %>
+        <tr>
+          <td><%= exam.applicant %></td>
+          <td><%= exam.applicant.user.email %></td>
+          <td><%= exam.exam_result %></td>
+          <td><%= exam.exam_out_of %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+</div>

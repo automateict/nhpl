@@ -1,0 +1,15 @@
+<%= simple_form_for(@timer) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <label>Event</label><br/>
+    <%= f.input_field :event %><br/><br/>
+    <label>Deadline</label><br/>
+    <%= f.input_field :end_date %><br/>
+  </div>
+<hr/>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+</div>

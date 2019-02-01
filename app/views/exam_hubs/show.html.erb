@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @exam_hub.name %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @exam_hub.region %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @exam_hub.city %>
+</p>
+
+<%= link_to 'Edit', edit_exam_hub_path(@exam_hub) %> |
+<%= link_to 'Back', exam_hubs_path %>

@@ -1,0 +1,18 @@
+<div class="header">
+<h2>
+    <i class="material-icons">library_books</i>
+    <span>Program Choices</span>
+</h2>
+</div>
+<table class="table">
+<% @applicant.complete_program_choices.each do |pc| %>
+<tr>
+    <th>
+        <%= pc.choice_order %>
+    </th>
+    <td class='col-md-11'>
+        <%= pc.program %>
+    </td>
+</tr>
+<% end %>
+</table>

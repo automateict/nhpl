@@ -1,0 +1,10 @@
+<h5>Program Choices</h5>
+
+    <table border="1" width="100%" style="border-collapse: collapse">
+      <% @applicant.complete_program_choices.each do |pc| %>
+      <tr>
+        <th><%= pc.choice_order.ordinalize %></th>
+        <td><%= pc.program %></td>
+      </tr>
+      <% end %>
+    </table>

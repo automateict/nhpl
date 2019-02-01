@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @exam_type.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @exam_type.description %>
+</p>
+
+<%= link_to 'Edit', edit_exam_type_path(@exam_type) %> |
+<%= link_to 'Back', exam_types_path %>

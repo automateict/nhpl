@@ -1,0 +1,16 @@
+
+<div class="header">
+  <h2>
+    Application Instructions
+  </h2>
+</div>
+<div class="body table-responsive">
+  <% if ApplicationInstruction.exists? %>
+      <%= raw @application_instruction.content %>
+      <hr/>
+      <%= link_to 'Edit Application Instructions', edit_application_instruction_path(@application_instruction), class: 'btn btn-primary' %>
+  <% else %>
+      <hr/>
+      <%= link_to 'New Application Instruction', new_application_instruction_path, class: 'btn btn-primary' %>
+  <% end %>
+</div>

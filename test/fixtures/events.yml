@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  academic_year: one
+  name: MyString
+  start_time: 2017-12-21 19:10:44
+  end_time: 2017-12-21 19:10:44
+
+two:
+  academic_year: two
+  name: MyString
+  start_time: 2017-12-21 19:10:44
+  end_time: 2017-12-21 19:10:44

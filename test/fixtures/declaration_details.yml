@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  applicant_declaration: one
+  declaration: one
+  status: false
+
+two:
+  applicant_declaration: two
+  declaration: two
+  status: false

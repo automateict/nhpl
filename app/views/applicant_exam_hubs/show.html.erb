@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Applicant:</strong>
+  <%= @applicant_exam_hub.applicant %>
+</p>
+
+<p>
+  <strong>Exam hub:</strong>
+  <%= @applicant_exam_hub.exam_hub %>
+</p>
+
+<%= link_to 'Edit', edit_applicant_exam_hub_path(@applicant_exam_hub) %> |
+<%= link_to 'Back', applicant_exam_hubs_path %>

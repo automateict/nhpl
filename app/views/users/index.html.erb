@@ -1,0 +1,33 @@
+<% if user_signed_in? and current_user.admin? %>
+    <div class="header">
+        <h2>
+            Users
+        </h2>
+    </div>
+    <div class="body table-responsive">
+    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Admin</th>
+      <th>Confirmation</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.admin_status %></td>
+        <td><%= link_to 'Confirm', confirm_user_path(user), class: 'btn btn-primary' unless user.confirmed? %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+    
+    <%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
+    <% end %>
+</div>

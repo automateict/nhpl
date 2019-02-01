@@ -1,0 +1,55 @@
+<div class="body">
+<h5>Save your interview results in CSV format in the same order as follows:</h5>
+<table class="table">
+  <tr>
+    <th>Applicant ID</th>
+    <th>Email</th>
+    <th>Interview Result</th>
+    <th>Out of</th>
+  </tr>
+  <tr>
+    <td>0001</td>
+    <td>example@nrmp.com</td>
+    <td>80</td>
+    <td>100</td>
+  </tr>
+</table>
+
+<div class="body">
+  <%= form_tag import_interview_exams_path,:multipart=>true do %>
+      <labe>CSV File</labe>
+      <%= file_field_tag(:interview_csv_file) %>
+    <hr/>
+    <%= submit_tag 'Import',class: 'btn' %>
+  <% end %>
+</div>
+
+<% unless @interviews.blank? %>
+<div class="header">
+  <h2>
+    Imported Interviews
+  </h2>
+</div>
+<div class="body table-responsive">
+  <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+    <thead>
+    <tr>
+      <th>Applicant</th>
+      <th>Interview Result</th>
+      <th>Exam out of</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @interviews.each do |exam| %>
+        <tr>
+          <td><%= exam.applicant %></td>
+          <td><%= exam.interview_result %></td>
+          <td><%= exam.interview_out_of %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+</div>

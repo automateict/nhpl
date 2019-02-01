@@ -1,0 +1,8 @@
+<div class="body">
+  <% if ApplicationInstruction.exists? %>
+    <%= raw ApplicationInstruction.first.content %>
+  <% else %>
+      <h3>No application instruction found</h3>
+  <% end %>
+  <%= link_to 'Continue to Application', new_applicant_path, class: 'btn btn-primary' %>
+</div>

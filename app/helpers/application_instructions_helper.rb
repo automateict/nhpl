@@ -1,0 +1,2 @@
+module ApplicationInstructionsHelper
+end

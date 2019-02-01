@@ -1,0 +1,24 @@
+<div class="countdown-timer">
+<p>
+  Counting Down to <%= link_to @timer.event, edit_timer_path(@timer) unless @timer.blank? %>
+</p>
+  <div class="row">
+    <div class="col-sm-3">
+      <span class="days"></span>
+      <label>Days</label>
+    </div>
+    <div class="col-sm-3">
+      <span class="hours"></span>
+      <label>Hours</label>
+    </div>
+    <div class="col-sm-3">
+      <span class="minutes"></span>
+      <label>Minutes</label>
+    </div>
+    <div class="col-sm-3">
+      <span class="seconds"></span>
+      <label>Seconds</label>
+    </div>
+  </div>
+
+</div>

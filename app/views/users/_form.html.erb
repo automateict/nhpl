@@ -1,0 +1,15 @@
+<%= simple_form_for(@user) do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :email %>
+    <%= f.input :password, as: :password, autocomplete: "off" %>
+    <%= f.input :password_confirmation, as: :password, autocomplete: "off" %>
+    <center>
+      <%= f.check_box :admin, id: "admin", class: "filled-in chk-col-pink" %>
+      <label for="admin">Admin</label>
+    </center>
+    <hr/>
+<div class="form-actions">
+<%= f.button :submit %>
+</div>
+<% end %>
+

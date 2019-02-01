@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Applicant:</strong>
+  <%= @applicant_declaration.applicant %>
+</p>
+
+<%= link_to 'Edit', edit_applicant_declaration_path(@applicant_declaration) %> |
+<%= link_to 'Back', applicant_declarations_path %>

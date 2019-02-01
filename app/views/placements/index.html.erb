@@ -1,0 +1,72 @@
+<div class="header">
+  <h2>
+    Licensed Applicants
+  </h2>
+</div>
+<div class="body table-responsive">
+  <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+  <thead>
+    <tr>
+      <th>Applicant</th>
+      <th>Gender</th>
+      <th>Sponsored By</th>
+      <th>Mark</th>
+      <th>Program</th>
+      <th>University</th>
+      <th>Published</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @placements.each do |placement| %>
+      <tr>
+        <td><%= placement.applicant %></td>
+        <td><%= placement.applicant.gender %></td>
+        <td><%= placement.applicant.applicant_service.sponsor rescue nil%></td>
+        <td><%= placement.applicant.exam.total rescue nil %></td>
+        <td><%= placement.program %></td>
+        <td><%= placement.university %></td>
+        <td><%= placement.published_status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr/>
+
+  <%= link_to 'License Applicants', match_placements_path, class: 'btn btn-primary' if @placements.blank? %>
+  <%= link_to 'Clear Placement', clear_placements_path, class: 'btn btn-primary' unless @unpublished.blank? %>
+  <%= link_to 'Publish Matching Result', publish_placements_path, class: 'btn btn-primary' unless @unpublished.blank? %>
+
+  <hr/>
+
+  <div class="header">
+    <h2>
+      Failed Applicants
+    </h2>
+  </div>
+    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+      <thead>
+      <tr>
+        <th>Applicant</th>
+        <th>Gender</th>
+        <th>Sponsored By</th>
+        <th>Email</th>
+        <th>Mark</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @unmatched_applicants.each do |applicant| %>
+          <tr>
+            <td><%= applicant %></td>
+            <td><%= applicant.gender %></td>
+            <td><%= applicant.applicant_service.sponsor rescue nil %></td>
+            <td><%= applicant.user.email %></td>
+            <td><%= applicant.exam.total rescue nil %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+</div>

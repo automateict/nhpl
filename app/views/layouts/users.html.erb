@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Sign In | NHPL</title>
+    <!-- Favicon-->
+  <%= favicon_link_tag 'favicon.ico' %>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+
+<body class="login-page users">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+<!-- #END# Page Loader -->
+    <div class="login-box">
+        <div class="logo">
+          <a><%= image_tag 'fdre.png', size: '40x40' %></a>
+            <a href="javascript:void(0);">MOH<b> NHPL</b></a>
+            <small>MOH - National Health Professionals Licensing Program</small>
+        </div>
+        <div class="card">
+            <div class="body">
+              <%= render partial: 'shared/flash_messages' %>
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

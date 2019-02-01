@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Academic year:</strong>
+  <%= @passing_mark.academic_year %>
+</p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @passing_mark.program %>
+</p>
+
+<p>
+  <strong>Passing mark:</strong>
+  <%= @passing_mark.passing_mark %>
+</p>
+
+<%= link_to 'Edit', edit_passing_mark_path(@passing_mark) %> |
+<%= link_to 'Back', passing_marks_path %>

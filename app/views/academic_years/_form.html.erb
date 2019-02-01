@@ -1,0 +1,12 @@
+<%= simple_form_for(@academic_year) do |f| %>
+  <%= f.error_notification %>
+
+      <%= f.input :name %>
+    <center>
+      <%= f.check_box :status, id: "status", class: "filled-in chk-col-pink" %>
+      <label for="status">Currently Active</label>
+    </center>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

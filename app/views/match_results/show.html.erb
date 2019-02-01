@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Applicant:</strong>
+  <%= @match_result.applicant %>
+</p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @match_result.program %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= @match_result.university %>
+</p>
+
+<%= link_to 'Edit', edit_match_result_path(@match_result) %> |
+<%= link_to 'Back', match_results_path %>

@@ -1,0 +1,9 @@
+  <% if target.errors.any? %>
+  <div id="error_explanation">
+  <ul>
+  <% target.errors.messages.each do |msg| %>
+    <li><%= msg[0].to_s.split('.').last.chomp("_id").humanize %> <%= msg[1][0] %></li>
+   <% end %>
+   </ul>
+   </div>
+  <% end %>  

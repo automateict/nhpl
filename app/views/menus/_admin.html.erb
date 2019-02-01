@@ -1,0 +1,117 @@
+<% if user_signed_in? and current_user.admin? %>
+<div class="menu">
+    <ul class="list">
+        <li class="header">MAIN MENU</li>
+        <li class="active">
+        <%= link_to root_path do %>
+            <i class="material-icons">home</i>
+            <span>Home</span>
+        <% end %>
+        </li>
+
+        <li>
+        <%= link_to users_path do %>
+            <i class="material-icons">person</i>
+            <span>Users</span>
+        <% end %>
+        </li>
+
+        <li>
+        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+            <i class="material-icons">settings</i>
+            <span>Settings</span>
+        </a>
+        <ul class="ml-menu" style="display: none;">
+          <li>
+            <%= link_to regions_path do %>
+                <i class="material-icons">layers</i>
+                <span>Regions</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to exam_hubs_path do %>
+                <i class="material-icons">place</i>
+                <span>Exam Hubs</span>
+            <% end %>
+          </li>
+            <li>
+                <%= link_to academic_years_path do %>
+                    <i class="material-icons">date_range</i>
+                    <span>Academic Years</span>
+                <% end %>
+            </li>
+            <li>
+                <%= link_to events_path do %>
+                    <i class="material-icons">event_note</i>
+                    <span>Events</span>
+                <% end %>
+            </li>
+            <li>
+                <%= link_to programs_path do %>
+                    <i class="material-icons">library_books</i>
+                    <span>Programs</span>
+                <% end %>
+            </li>
+            <li>
+                <%= link_to universities_path do %>
+                    <i class="material-icons">school</i>
+                    <span>Universities</span>
+                <% end %>
+            </li>
+
+          <li>
+            <%= link_to declarations_path do %>
+                <i class="material-icons">school</i>
+                <span>Declarations</span>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to application_instructions_path do %>
+                <i class="material-icons">text_format</i>
+                <span>Application Instructions</span>
+            <% end %>
+          </li>
+        </ul>
+    </li>
+    <li>
+    <%= link_to applicants_path do %>
+        <i class="material-icons">people</i>
+        <span>Applications</span>
+    <% end %>
+    </li>
+
+      <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+        <i class="material-icons">settings</i>
+        <span>Exam</span>
+      </a>
+      <ul class="ml-menu" style="display: none;">
+        <li>
+          <%= link_to settings_path do %>
+              <i class="material-icons">layers</i>
+              <span>Exam Settings</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to exams_path do %>
+              <i class="material-icons">place</i>
+              <span>Exam Results</span>
+          <% end %>
+        </li>
+      </ul>
+
+      <%= link_to placements_path do %>
+          <i class="material-icons">people</i>
+          <span>License Result</span>
+      <% end %>
+      </li>
+
+      <%= link_to statistics_placements_path do %>
+          <i class="material-icons">pie_chart</i>
+          <span>Certification Statistics</span>
+      <% end %>
+      </li>
+
+    </ul>
+</div>
+<% end %>

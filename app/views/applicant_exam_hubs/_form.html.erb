@@ -1,0 +1,14 @@
+<%= simple_form_for(@applicant_exam_hub) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs applicant_exam_hub">
+    <%= f.input :applicant_id, as: :hidden, input_html: {value: @applicant.id} %>
+    <label>Where Do you want to take the entrance exam ?</label><br/>
+    <%= f.collection_radio_buttons :exam_hub_id, ExamHub.all, :id, :name %>
+    <%= f.full_error :exam_hub_id %>
+  </div>
+  <hr/>
+  <div class="form-actions">
+    <%= f.button :submit, 'Save and Continue' %>
+  </div>
+<% end %>

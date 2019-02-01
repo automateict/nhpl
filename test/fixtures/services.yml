@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  applicant_service: one
+  institution: MyString
+  region: one
+  start_date: 2018-03-17
+  end_date: 2018-03-17
+
+two:
+  applicant_service: two
+  institution: MyString
+  region: two
+  start_date: 2018-03-17
+  end_date: 2018-03-17

@@ -1,0 +1,13 @@
+<%= simple_form_for(@application_instruction) do |f| %>
+  <%= f.error_notification %>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.input_field :content, class: 'wysihtml5' %>
+        <%= f.error :content %>
+      </div>
+    </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
