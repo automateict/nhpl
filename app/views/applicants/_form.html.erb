@@ -21,13 +21,26 @@
     <hr/>
 
   <legend>Educational Background</legend>
-  <%= f.association :program %>
-  <%= f.association :university %>
+
   <%= f.input :university_type, collection: ['Public', 'Private'] %>
   <%= f.input :qualification %>
   <%= f.input :date_of_completion, as: :string, input_html: {class: "datepicker"} %>
   <%= f.association :applicant_type %>
   <%= f.association :exam_type %>
+
+  <legend>Attachements</legend>
+  <%= f.label :file %>
+  <%= f.file_field :file %>
+
+  <%= f.label :application_fee %>
+  <%= f.file_field :file %>
+
+
+  <%= f.label :two_passport_size_photos %>
+  <%= f.file_field :file %>
+
+
+
   <hr/>
     <%= f.button :submit, 'Save and Continue', disable_with: 'Processing...' %>
 <% end %>

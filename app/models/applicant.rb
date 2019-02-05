@@ -11,6 +11,7 @@ class Applicant < ApplicationRecord
     has_many :declaration_details, through: :applicant_declaration
     has_one :exam
     has_one :placement
+    has_many_attached :file
 
     validates :title, :gender, :first_name, :father_name, :grand_father_name,
               :date_of_birth, :marital_status, :phone, :city, presence: true
