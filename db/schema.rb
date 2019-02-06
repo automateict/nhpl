@@ -40,31 +40,6 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "applicant_declarations", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.bigint "applicant_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["applicant_id"], name: "index_applicant_declarations_on_applicant_id"
-  end
-
-  create_table "applicant_exam_hubs", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.bigint "applicant_id"
-    t.bigint "exam_hub_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["applicant_id"], name: "index_applicant_exam_hubs_on_applicant_id"
-    t.index ["exam_hub_id"], name: "index_applicant_exam_hubs_on_exam_hub_id"
-  end
-
-  create_table "applicant_services", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.bigint "applicant_id"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "sponsor"
-    t.index ["applicant_id"], name: "index_applicant_services_on_applicant_id"
-  end
-
   create_table "applicant_types", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -74,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
 
   create_table "applicants", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "user_id"
+    t.string "title"
     t.string "first_name"
     t.string "father_name"
     t.string "grand_father_name"
@@ -87,17 +63,21 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
     t.string "street"
     t.string "pobox"
     t.string "phone"
-    t.bigint "program_id"
     t.bigint "university_id"
     t.string "university_type"
     t.string "qualification"
     t.date "date_of_completion"
+    t.bigint "program_id"
     t.bigint "applicant_type_id"
     t.bigint "exam_type_id"
+    t.boolean "do_you_have_needs_for_disability"
+    t.string "disability"
+    t.string "accomodation_request"
+    t.boolean "i_understand"
+    t.boolean "i_give_my_permission"
+    t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "status"
-    t.string "title"
     t.bigint "academic_year_id"
     t.index ["academic_year_id"], name: "index_applicants_on_academic_year_id"
     t.index ["applicant_type_id"], name: "index_applicants_on_applicant_type_id"
@@ -110,22 +90,6 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
 
   create_table "application_instructions", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "declaration_details", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.bigint "applicant_declaration_id"
-    t.bigint "declaration_id"
-    t.boolean "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["applicant_declaration_id"], name: "index_declaration_details_on_applicant_declaration_id"
-    t.index ["declaration_id"], name: "index_declaration_details_on_declaration_id"
-  end
-
-  create_table "declarations", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -214,18 +178,6 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "services", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.bigint "applicant_service_id"
-    t.string "institution"
-    t.bigint "region_id"
-    t.date "start_date"
-    t.date "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["applicant_service_id"], name: "index_services_on_applicant_service_id"
-    t.index ["region_id"], name: "index_services_on_region_id"
-  end
-
   create_table "settings", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.float "exam_weight"
     t.float "interview_weight"
@@ -270,10 +222,6 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "applicant_declarations", "applicants"
-  add_foreign_key "applicant_exam_hubs", "applicants"
-  add_foreign_key "applicant_exam_hubs", "exam_hubs"
-  add_foreign_key "applicant_services", "applicants"
   add_foreign_key "applicants", "academic_years"
   add_foreign_key "applicants", "applicant_types"
   add_foreign_key "applicants", "exam_types"
@@ -281,8 +229,6 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
   add_foreign_key "applicants", "regions"
   add_foreign_key "applicants", "universities"
   add_foreign_key "applicants", "users"
-  add_foreign_key "declaration_details", "applicant_declarations"
-  add_foreign_key "declaration_details", "declarations"
   add_foreign_key "events", "academic_years"
   add_foreign_key "exam_hubs", "regions"
   add_foreign_key "exams", "applicants"
@@ -294,6 +240,4 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
   add_foreign_key "placements", "applicants"
   add_foreign_key "placements", "programs"
   add_foreign_key "placements", "universities"
-  add_foreign_key "services", "applicant_services"
-  add_foreign_key "services", "regions"
 end

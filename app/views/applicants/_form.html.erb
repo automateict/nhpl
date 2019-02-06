@@ -22,6 +22,9 @@
 
   <legend>Educational Background</legend>
 
+
+  <%= f.association :program %>
+  <%= f.association :university %>
   <%= f.input :university_type, collection: ['Public', 'Private'] %>
   <%= f.input :qualification %>
   <%= f.input :date_of_completion, as: :string, input_html: {class: "datepicker"} %>
