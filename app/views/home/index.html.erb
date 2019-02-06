@@ -148,24 +148,7 @@
 <div class="card">
 <div class="body table-responsive">
   <legend>Applicants program choice statstics</legend>
-<table class='table table-striped table-bordered dataTable js-exportable'>
-  <thead>
-  <tr>
-    <th>Program Name</th>
-    <th>1st</th>
-    <th>2nd</th>
-    <th>3rd</th>
-  </tr>
-  </thead>
-  <% Program.all.each do |p| %>
-      <tr>
-        <td><%= p %></td>
-        <td><%= p.count_applicants(1) %></td>
-        <td><%= p.count_applicants(2) %></td>
-        <td><%= p.count_applicants(3) %></td>
-      </tr>
-  <% end %>
-</table><br/><br/>
+
 </div>
 </div>
 <% end %>
@@ -184,7 +167,7 @@
           <% ExamHub.all.each do |e| %>
               <tr>
                 <td><%= e %></td>
-                <td><%= e.applicant_exam_hubs.count %></td>
+
               </tr>
           <% end %>
         </table><br/><br/>

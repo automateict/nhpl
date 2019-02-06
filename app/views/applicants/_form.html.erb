@@ -115,6 +115,17 @@
   <%= f.file_field :file %>
 
 
+  <!-- Needs for Disability -->
+
+  <%= f.input :do_you_have_needs_for_disability %>
+  <%= f.input :disability, collection: ["Pregnant", "other"] %>
+  <%= f.input :accomodation_request, collection: ["hotel", "Normal House"] %>
+
+  <!-- confirmations -->
+
+  <%= f.input :i_understand %>
+  <%= f.input :i_give_my_permission %>
+
 
   <hr/>
   <%= f.button :submit, 'Save and Continue', disable_with: 'Processing...' %>

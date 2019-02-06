@@ -10,17 +10,8 @@ class Program < ApplicationRecord
         academic_year,self.id)
     end
 
-    def count_applicants(choice_number)
-      program_choices.where('choice_order = ?',choice_number).size
-    end
-
-    def self.all_choice_orders
-      UniversityChoice.joins(:program_choice=>:applicant).
-          where('academic_year_id = ?', AcademicYear.current.try(:id)).pluck('university_choices.choice_order').uniq.sort
-    end
-
-    def applicant_per_university(university,choice_number)
-      university_choices.where('university_id = ? and university_choices.choice_order = ?', university, choice_number).size
+    def applicant_per_university(university)
+      universities.where('university_id = ? and universities = ?', university).size
     end
 
     def remaining_quota(uninversity,academic_year=AcademicYear.current)

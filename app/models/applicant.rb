@@ -34,10 +34,6 @@ class Applicant < ApplicationRecord
       program_choices.where('program_id is not null')
     end
 
-    def complete_university_choices
-      program_choices.map{|x| x.complete_university_choices }.flatten
-    end
-
     def self.placement_conducted(cay=AcademicYear.current)
       Placement.joins(:applicant).where('academic_year_id = ?', cay.try(:id)).size > 0
     end
@@ -56,10 +52,6 @@ class Applicant < ApplicationRecord
 
     def full_name
       [title, first_name, father_name, grand_father_name].join(' ')
-    end
-
-    def program_choice(order)
-      program_choices.where('choice_order = ?', order).first
     end
 
     def self.match
