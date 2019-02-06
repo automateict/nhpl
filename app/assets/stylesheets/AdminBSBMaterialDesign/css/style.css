@@ -2534,7 +2534,7 @@ section.content {
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:focus {
-  background-color: #1f91f3 !important; }
+  background-color: #009688 !important; }
 
 .btn-default,
 .btn-default:hover,
@@ -4518,7 +4518,7 @@ section.content {
   border-radius: 0; }
 
 .label-primary {
-  background-color: #1f91f3; }
+  background-color: #009688; }
 
 .label-success {
   background-color: #2b982b; }
@@ -4549,7 +4549,7 @@ section.content {
   border-bottom: 1px solid #eee; }
 
 .table tbody tr.primary td, .table tbody tr.primary th {
-  background-color: #1f91f3;
+  background-color: #009688;
   color: #fff; }
 
 .table tbody tr.success td, .table tbody tr.success th {
@@ -4774,9 +4774,9 @@ section.content {
     color: #555; }
 
 .panel-group .panel-primary {
-  border: 1px solid #1f91f3; }
+  border: 1px solid #009688; }
   .panel-group .panel-primary .panel-title {
-    background-color: #1f91f3; }
+    background-color: #009688; }
 
 .panel-group .panel-success {
   border: 1px solid #2b982b; }
@@ -4903,7 +4903,7 @@ section.content {
 
 .full-body .panel-primary .panel-body {
   border-top-color: #fff !important;
-  background-color: #1f91f3;
+  background-color: #009688;
   color: #fff; }
 
 .full-body .panel-success .panel-body {
@@ -4930,7 +4930,7 @@ section.content {
   height: 22px; }
   .progress .progress-bar {
     line-height: 23px;
-    background-color: #1f91f3; }
+    background-color: #009688; }
   .progress .progress-bar-success {
     background-color: #2b982b; }
   .progress .progress-bar-info {
@@ -4975,7 +4975,7 @@ section.content {
       -o-transition: 0.25s ease-in;
       -webkit-transition: 0.25s ease-in;
       transition: 0.25s ease-in;
-      border-bottom: 2px solid #1f91f3; }
+      border-bottom: 2px solid #009688; }
     .input-group .form-line + .input-group-addon {
       padding-right: 0;
       padding-left: 10px; }
@@ -5086,7 +5086,7 @@ section.content {
       -o-transition: 0.25s ease-in;
       -webkit-transition: 0.25s ease-in;
       transition: 0.25s ease-in;
-      border-bottom: 2px solid #1f91f3; }
+      border-bottom: 2px solid #009688; }
     .form-group .form-line .form-label {
       font-weight: normal;
       color: #aaa;
@@ -7721,7 +7721,7 @@ fieldset[disabled] .form-control {
 
 /* Login Page ================================== */
 .login-page {
-  background-color: #00BCD4;
+  background-color: #009688;
   padding-left: 0;
   max-width: 600px;
   margin: 5% auto;
@@ -7781,7 +7781,7 @@ fieldset[disabled] .form-control {
 
 /* Forgot Password Page ======================== */
 .fp-page {
-  background-color: #00BCD4;
+  background-color: #009688;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;
@@ -7793,7 +7793,7 @@ fieldset[disabled] .form-control {
   .fp-page .fp-box a {
     font-size: 14px;
     text-decoration: none;
-    color: #00BCD4; }
+    color: #009688; }
   .fp-page .fp-box .logo {
     margin-bottom: 20px; }
     .fp-page .fp-box .logo a {
@@ -7955,7 +7955,7 @@ fieldset[disabled] .form-control {
     font-size: 12px;
     border-bottom: 1px solid #ddd; }
     .dataTables_wrapper input[type="search"]:focus, .dataTables_wrapper input[type="search"]:active {
-      border-bottom: 2px solid #1f91f3; }
+      border-bottom: 2px solid #009688; }
   .dataTables_wrapper .dt-buttons {
     float: left; }
     .dataTables_wrapper .dt-buttons a.dt-button {

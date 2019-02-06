@@ -7,6 +7,8 @@
 //= require fullcalendar
 //= require AdminBSBMaterialDesign/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker
 //= require AdminBSBMaterialDesign/sweetalert/sweetalert.min
+//= require AdminBSBMaterialDesign/jquery-steps/jquery.steps
+//= require AdminBSBMaterialDesign/form-wizard/form-wizard
 //= require AdminBSBMaterialDesign/js/pages/forms/basic-form-elements
 //= require AdminBSBMaterialDesign/jquery-datatable/index
 //= require AdminBSBMaterialDesign/js/demo
