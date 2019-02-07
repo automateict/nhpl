@@ -18,8 +18,8 @@
       <tr>
         <td><%= region.name %></td>
         <td>
-          <%= link_to 'Edit', edit_region_path(region) %>
-          <%= link_to 'Delete', region, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Edit', edit_region_path(region), class: 'btn btn-primary' %>
+          <%= link_to 'Delete', region, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-primary' %>
         </td>
       </tr>
     <% end %>

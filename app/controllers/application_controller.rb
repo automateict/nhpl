@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
   respond_to :html, :js, :json, :pdf
   before_action :set_application_calendar, :set_no_cache
 

@@ -24,8 +24,8 @@
         <td><%= exam_hub.city %></td>
         <td><%= exam_hub.ceiling %></td>
         <td>
-          <%= link_to 'Edit', edit_exam_hub_path(exam_hub) %>
-          <%= link_to 'Delete', exam_hub, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Edit', edit_exam_hub_path(exam_hub), class: 'btn btn-primary' %>
+          <%= link_to 'Delete', exam_hub, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-primary' %>
         </td>
       </tr>
     <% end %>

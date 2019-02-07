@@ -17,7 +17,7 @@
     <% @programs.each do |program| %>
       <tr>
         <td><%= program.name %></td>
-        <td><%= link_to 'Edit', edit_program_path(program) %></td>
+        <td><%= link_to 'Edit', edit_program_path(program), class: 'btn btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>
