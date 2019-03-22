@@ -26,11 +26,6 @@ Rails.application.routes.draw do
     end
   end
   resources :application_instructions
-  resources :applicant_services do
-    collection do
-      get 'load_services'
-    end
-  end
   resources :applicant_exam_hubs
   resources :exam_hubs
   resources :regions

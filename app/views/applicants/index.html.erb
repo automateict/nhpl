@@ -8,7 +8,7 @@
       <table class="table table-bordered table-striped table-hover dataTable js-exportable">
     <thead>
       <tr>
-        <th></th>
+        <th>#</th>
         <th>Applicant ID</th>
         <th>First Name</th>
         <th>Father Name</th>
@@ -16,21 +16,7 @@
         <th>Gender</th>
         <th>Email</th>
         <th>Phone</th>
-        <th>Status</th>
-        <th>Sponsor</th>
         <th>Exam Hub</th>
-        <th>1st program choice</th>
-        <% (1..12).each do |t| %>
-            <th><%= t.ordinalize %> university</th>
-        <% end %>
-        <th>2nd program choice</th>
-        <% (1..12).each do |t| %>
-            <th><%= t.ordinalize %> university</th>
-        <% end %>
-        <th>3rd program choice</th>
-        <% (1..12).each do |t| %>
-            <th><%= t.ordinalize %> university</th>
-        <% end %>
         <th></th>
 
       </tr>
@@ -41,7 +27,6 @@
       <% unless @applicants.blank? %>
         <% @applicants.each do |applicant| %>
           <tr>
-            <td><%= link_to 'Edit', new_program_choice_path(applicant: applicant.id),target: "_blank" %></td>
             <td><%= applicant.id %></td>
             <td><%= applicant.first_name %></td>
             <td><%= applicant.father_name %></td>
@@ -50,20 +35,6 @@
             <td><%= applicant.user.email %></td>
             <td><%= applicant.phone %></td>
             <td><%= applicant.application_status %></td>
-            <td><%= applicant.applicant_service.sponsor rescue nil %></td>
-            <td><%= applicant.applicant_exam_hub rescue nil %></td>
-            <td><%= p1 = applicant.program_choice(1) %></td>
-            <% (1..12).each do |t| %>
-                <td><%= p1.university_choice(t) rescue nil %></td>
-            <% end %>
-            <td><%= p2 = applicant.program_choice(2) %></td>
-            <% (1..12).each do |t| %>
-                <td><%= p2.university_choice(t) rescue nil %></td>
-            <% end %>
-            <td><%= p3 = applicant.program_choice(3) %></td>
-            <% (1..12).each do |t| %>
-                <td><%= p3.university_choice(t) rescue nil %></td>
-            <% end %>
             <td><%= link_to 'Details', details_applicant_path(applicant) %></td>
           </tr>
           <% counter += 1 %>

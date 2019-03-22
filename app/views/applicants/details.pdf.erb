@@ -5,44 +5,12 @@
 
   <%= render partial: 'applicant' %>
 
-      <%= render partial: 'program_choices' %>
-
-      <%= render partial: 'university_choices' %>
 
       <h5>Exam Hub</h5>
-    <span><b>Selected Exam Hub:</b>  <%= @applicant.applicant_exam_hub %> </span>
+    
 
-  <h5>Services</h5>
-  <span><b>Served at an institution?</b> &nbsp;&nbsp;&nbsp;<%= @applicant.applicant_service.try(:status) %></span>
-
-  <% unless @applicant.applicant_service.services.blank? %>
-      <table border="1" width="100%" style="border-collapse: collapse">
-        <tr>
-          <th>Institution</th>
-          <th>Region</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-        </tr>
-
-        <% @applicant.applicant_service.services.each do |service| %>
-            <tr>
-              <td><%= service.institution %></td>
-              <td><%= service.region %></td>
-              <td><%= service.start_date %></td>
-              <td><%= service.end_date %></td>
-            </tr>
-        <% end %>
-      </table>
-  <% end %>
-  <h5>Sponsorship</h5>
-  <span><b>Sponsor:</b>&nbsp;&nbsp;&nbsp; <%= @applicant.applicant_service.try(:sponsor) %></span>
+  
 
   <h3>Declarations</h3>
-  <table border="1" width="100%" style="border-collapse: collapse">
-    <% @applicant.declaration_details.each do |ad| %>
-      <tr>
-        <td><%= ad.declaration %></td>
-        <th><%= ad.declaration_status %></th>
-      </tr>
-    <% end %>
+
   </table>

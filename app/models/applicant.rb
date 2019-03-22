@@ -13,7 +13,7 @@ class Applicant < ApplicationRecord
     has_one :placement
     belongs_to :program
     belongs_to :university
-    has_many_attached :file
+    has_many_attached :files
 
     validates :title, :gender, :first_name, :father_name, :grand_father_name,
               :date_of_birth, :marital_status, :phone, :city, presence: true
@@ -39,7 +39,7 @@ class Applicant < ApplicationRecord
     end
 
     def matching_status
-      Applicant.placement_conducted == true ? (!published_placemet.blank? ? 'Matched' : 'Unmatched') : 'Coming Soon'
+      Applicant.placement_conducted == true ? (!published_placemet.blank? ? 'Licensed' : 'Not Licensed') : 'In Process...'
     end
 
     def application_status

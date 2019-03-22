@@ -48,7 +48,7 @@ class ApplicantsController < ApplicationController
     @applicant = Applicant.new(applicant_params)
     respond_to do |format|
       if @applicant.save
-          format.html { redirect_to new_applicant_service_path(applicant: @applicant.id), notice: 'Applicant was successfully created.' }
+          format.html { redirect_to applicant: @applicant, notice: 'Applicant was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @applicant.errors, status: :unprocessable_entity }
@@ -92,8 +92,10 @@ class ApplicantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def applicant_params
-      params.require(:applicant).permit(:academic_year_id,:title, :place_of_birth, :marital_status, :region_id, :city, :street, :pobox, :phone,
-                                        :user_id,:first_name, :father_name, :grand_father_name, :gender, :date_of_birth, :nationality, :institution, :institution_type, :qualification, :date_of_completion, :applicant_type, :exam_type,
-                                        program_choice_attributes: [:id, :applicant_id, :program_id, :choice_order, :_destroy])
+      params.require(:applicant).permit(:user_id, :academic_year_id,:title, :first_name, :father_name, :grand_father_name, :gender, :date_of_birth,
+                                        :place_of_birth, :marital_status, :nationality, :region_id, :city, :street, :pobox, :phone,
+                                        :university_id, :university_type_id, :qualification, :date_of_completion, :program_id, :applicant_type_id, :exam_type_id,
+                                        :do_you_have_needs_for_disability, :disability, :accomodation_request, :i_understand, :i_give_my_permission,
+                                        files: [])
     end
 end

@@ -7,7 +7,7 @@
     <% end %>
 
     <% unless @application_calendar.blank? %>
-        <% if @application_calendar.try(:start_time) <= Date.today and @application_calendar.try(:end_time) >= Date.today and !@applicant.status? and !@applicant.applicant_declaration.blank? %>
+        <% if @application_calendar.try(:start_time) <= Date.today and @application_calendar.try(:end_time) >= Date.today and !@applicant.status? %>
             <%= link_to 'Submit Application', submit_applicant_path(@applicant), class: 'btn btn-primary',data: { confirm: 'Are you sure you have finished your application? You can not edit your application once you submitted.' }  unless current_user.admin?%>
         <% end %>
     <% end %>
@@ -19,23 +19,13 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs tab-nav-right" role="tablist">
     <li role="presentation" class="active"><a href="#personal_details" data-toggle="tab">Personal Details</a></li>
-    <li role="presentation"><a href="#program_choices" data-toggle="tab">Program Choices</a></li>
-    <li role="presentation"><a href="#university_choices" data-toggle="tab">University Choices</a></li>
-    <li role="presentation"><a href="#exam_hub" data-toggle="tab">Exam Hub</a></li>
-    <li role="presentation"><a href="#services" data-toggle="tab">Services</a></li>
-    <li role="presentation"><a href="#declarations" data-toggle="tab">Declarations</a></li>
+    <li role="presentation"><a href="#university_choices" data-toggle="tab">Document Attachments</a></li>
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane fade in active" id="personal_details">
       <%= render partial: 'applicant' %>
-    </div>
-    <div role="tabpanel" class="tab-pane fade" id="program_choices">
-      <%= render partial: 'program_choices' %>
-    </div>
-    <div role="tabpanel" class="tab-pane fade" id="university_choices">
-      <%= render partial: 'university_choices' %>
     </div>
 
     <div role="tabpanel" class="tab-pane fade" id="exam_hub">
@@ -50,7 +40,7 @@
           Selected Exam Hub
         </div>
         <div class='col-sm-6'>
-          <b><%= @applicant.applicant_exam_hub %></b>
+          
         </div>
       </div>
     </div>
@@ -68,7 +58,7 @@
             Served at an institution ?
           </div>
           <div class='col-sm-6'>
-            <b><%= @applicant.applicant_service.try(:status) %></b>
+            
           </div>
         </div>
 
@@ -77,35 +67,10 @@
             sponsor
           </div>
           <div class='col-sm-6'>
-            <b><%= @applicant.applicant_service.try(:sponsor) %></b>
+            
           </div>
         </div>
 
-        <% unless @applicant.applicant_service.blank? %>
-            <% unless @applicant.applicant_service.services.blank? %>
-              <table class="table table-responsive">
-          <thead>
-          <tr>
-            <th>Institution</th>
-            <th>Region</th>
-            <th>Start time</th>
-            <th>End time</th>
-          </tr>
-          </thead>
-
-          <tbody>
-          <% @applicant.applicant_service.services.each do |service| %>
-              <tr>
-                <td><%= service.institution %></td>
-                <td><%= service.region %></td>
-                <td><%= service.start_date %></td>
-                <td><%= service.end_date %></td>
-              </tr>
-          <% end %>
-          </tbody>
-        </table>
-            <% end %>
-        <% end %>
       </div>
       </div>
 
@@ -116,14 +81,7 @@
         <span>Declarations</span>
       </h2>
       </div><br/>
-      <table class="table table-responsive">
-        <% @applicant.declaration_details.each do |ad| %>
-            <tr>
-              <td><%= ad.declaration %></td>
-              <th><%= ad.declaration_status %></th>
-            </tr>
-        <% end %>
-      </table>
+
     </div>
   </div>
 </div>

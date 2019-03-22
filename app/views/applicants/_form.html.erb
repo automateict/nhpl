@@ -1,77 +1,7 @@
-<div class="row clearfix">
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="body">
-        <form id="wizard_with_validation" method="POST">
-          <h3>Personal Details</h3>
-          <fieldset>
-            <div class="form-group form-float">
-              <div class="form-line">
-                <input type="text" class="form-control" name="username" required>
-                <label class="form-label">Username*</label>
-              </div>
-            </div>
-            <div class="form-group form-float">
-              <div class="form-line">
-                <input type="password" class="form-control" name="password" id="password" required>
-                <label class="form-label">Password*</label>
-              </div>
-            </div>
-            <div class="form-group form-float">
-              <div class="form-line">
-                <input type="password" class="form-control" name="confirm" required>
-                <label class="form-label">Confirm Password*</label>
-              </div>
-            </div>
-          </fieldset>
-
-          <h3>Profile Information</h3>
-          <fieldset>
-            <div class="form-group form-float">
-              <div class="form-line">
-                <input type="text" name="name" class="form-control" required>
-                <label class="form-label">First Name*</label>
-              </div>
-            </div>
-            <div class="form-group form-float">
-              <div class="form-line">
-                <input type="text" name="surname" class="form-control" required>
-                <label class="form-label">Last Name*</label>
-              </div>
-            </div>
-            <div class="form-group form-float">
-              <div class="form-line">
-                <input type="email" name="email" class="form-control" required>
-                <label class="form-label">Email*</label>
-              </div>
-            </div>
-            <div class="form-group form-float">
-              <div class="form-line">
-                <textarea name="address" cols="30" rows="3" class="form-control no-resize" required></textarea>
-                <label class="form-label">Address*</label>
-              </div>
-            </div>
-            <div class="form-group form-float">
-              <div class="form-line">
-                <input min="18" type="number" name="age" class="form-control" required>
-                <label class="form-label">Age*</label>
-              </div>
-              <div class="help-info">The warning step will show up if age is less than 18</div>
-            </div>
-          </fieldset>
-
-          <h3>Terms & Conditions - Finish</h3>
-          <fieldset>
-            <input id="acceptTerms-2" name="acceptTerms" type="checkbox" required>
-            <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
-          </fieldset>
-        </form>
-      </div>
-  </div>
-</div>
-
-
-<%= simple_form_for @applicant do |f| %>
+<%= simple_form_for @applicant, html: { id: "wizard_with_validation"} do |f| %>
   <%= f.error_notification %>
+  <h3>Personal Details</h3>
+  <fieldset>
   <%= f.full_error :user_id %>
   <%= f.input :academic_year_id, as: :hidden, input_html: {value: AcademicYear.current.try(:id)} %>
   <%= f.input :title, label: 'Title', collection: ['Dr'] %>
@@ -84,18 +14,19 @@
   <%= f.input :place_of_birth %>
   <%= f.input :marital_status, collection: ['Single', 'Married', 'Divorced'] %>
   <%= f.input :nationality %>
+  </fieldset>
 
-  <legend>Current Address</legend>
+<h3>Current Address</h3>
+  <fieldset>
   <%= f.association :region %>
   <%= f.input :city %>
   <%= f.input :street %>
   <%= f.input :pobox %>
   <%= f.input :phone %>
-  <hr/>
+  </fieldset>
 
-  <legend>Educational Background</legend>
-
-
+  <h3>Educational Background</h3>
+  <fieldset>
   <%= f.association :program %>
   <%= f.association :university %>
   <%= f.input :university_type, collection: ['Public', 'Private'] %>
@@ -103,21 +34,25 @@
   <%= f.input :date_of_completion, as: :string, input_html: {class: "datepicker"} %>
   <%= f.association :applicant_type %>
   <%= f.association :exam_type %>
+  </fieldset>
 
-  <legend>Attachements</legend>
+
+  <h3>Attachements</h3>
+  <fieldset>
   <%= f.label :file %>
   <%= f.file_field :file %>
 
   <%= f.label :application_fee %>
   <%= f.file_field :file %>
 
-
   <%= f.label :two_passport_size_photos %>
   <%= f.file_field :file %>
 
-
+  </fieldset>
   <!-- Needs for Disability -->
 
+  <h3>Terms and Conditions</h3>
+  <fieldset>
   <%= f.input :do_you_have_needs_for_disability %>
   <%= f.input :disability, collection: ["Pregnant", "other"] %>
   <%= f.input :accomodation_request, collection: ["hotel", "Normal House"] %>
@@ -127,8 +62,6 @@
   <%= f.input :i_understand %>
   <%= f.input :i_give_my_permission %>
 
-
-  <hr/>
-  <%= f.button :submit, 'Save and Continue', disable_with: 'Processing...' %>
+  </fieldset>
 <% end %>
 
