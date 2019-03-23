@@ -21,6 +21,7 @@ class CreateApplicants < ActiveRecord::Migration[5.1]
 
       # Educational Background
       t.references :university, foreign_key: true
+      t.string :other_university
       t.string :university_type
       t.string :qualification
       t.date :date_of_completion

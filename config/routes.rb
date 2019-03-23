@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   resources :applicants do
     collection do
       get 'instructions'
+      get 'load_other_university'
     end
     member do
       get 'details'

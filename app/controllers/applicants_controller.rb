@@ -9,12 +9,17 @@ class ApplicantsController < ApplicationController
     @applicants = AcademicYear.current.applicants rescue nil
   end
 
+  def load_other_university
+    university  = University.find_by(id: params[:university])
+    if university.name.downcase == 'other'
+      @other = true
+      render partial: 'other_university'
+    end
+  end
+
   # GET /applicants/1
   # GET /applicants/1.json
   def show
-  end
-
-  def details
     respond_to do |format|
       format.html
       format.pdf do
@@ -24,9 +29,13 @@ class ApplicantsController < ApplicationController
     end
   end
 
+  def details
+  
+  end
+
   def submit
     @applicant.update(status: true)
-    redirect_to details_applicant_path(@applicant)
+    redirect_to @applicant
   end
 
   def instructions
@@ -48,7 +57,7 @@ class ApplicantsController < ApplicationController
     @applicant = Applicant.new(applicant_params)
     respond_to do |format|
       if @applicant.save
-          format.html { redirect_to applicant: @applicant, notice: 'Applicant was successfully created.' }
+          format.html { redirect_to @applicant, notice: 'Application successfully Saved.' }
       else
         format.html { render :new }
         format.json { render json: @applicant.errors, status: :unprocessable_entity }
@@ -61,12 +70,8 @@ class ApplicantsController < ApplicationController
   def update
     respond_to do |format|
       if @applicant.update(applicant_params)
-        if @applicant.applicant_service.blank?
-          format.html { redirect_to new_applicant_service_path(applicant: @applicant.id), notice: 'Applicant was successfully updated.' }
-        else
-          format.html { redirect_to edit_applicant_service_path(@applicant.applicant_service), notice: 'Applicant was successfully updated.' }
-        end
-        format.json { render :show, status: :ok, location: @applicant }
+          format.html { redirect_to @applicant, notice: 'Application successfully updated.' }
+          format.json { render :show, status: :ok, location: @applicant }
       else
         format.html { render :edit }
         format.json { render json: @applicant.errors, status: :unprocessable_entity }

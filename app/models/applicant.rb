@@ -1,7 +1,7 @@
 class Applicant < ApplicationRecord
     has_many :program_choices, dependent: :destroy
     belongs_to :user
-    belongs_to :region
+    belongs_to :region, optional: true
     belongs_to :applicant_type
     belongs_to :exam_type
     has_one :match_result
