@@ -1,6 +1,7 @@
 class Applicant < ApplicationRecord
     has_many :program_choices, dependent: :destroy
     belongs_to :user
+    belongs_to :academic_year
     belongs_to :region, optional: true
     belongs_to :applicant_type
     belongs_to :exam_type
@@ -15,14 +16,30 @@ class Applicant < ApplicationRecord
     belongs_to :university
     has_many_attached :files
 
+    after_find :set_licensing_status
+
     validates :title, :gender, :first_name, :father_name, :grand_father_name,
-              :date_of_birth, :marital_status, :phone, :city, presence: true
+              :date_of_birth, :marital_status, :phone, :city, :i_understand, :i_give_my_permission, presence: true
 
     validates :user_id, uniqueness: {scope: :academic_year_id,
                                      message: 'already started application. Please go to Home --> Application Details and edit your application'}
     STATUSES = ['New']
+    LICENSING_STATUS = [LICENSED = 'Licensed', NOT_LICENSED='Not Licensed']
 
     scope :complete, -> { where('status is true') }
+
+    def set_licensing_status
+      passing_mark = Setting.first.try(:passing_mark)
+      unless passing_mark.blank?
+        if exam.total || 0 >= passing_mark
+          self.licensing_status = Applicant::LICENSED
+        else
+          self.licensing_status = Applicant::NOT_LICENSED
+        end
+      else
+        self.licensing_status = Applicant::NOT_LICENSED
+      end
+    end
 
     def published_placemet
       unless placement.blank?
@@ -36,10 +53,6 @@ class Applicant < ApplicationRecord
 
     def self.placement_conducted(cay=AcademicYear.current)
       Placement.joins(:applicant).where('academic_year_id = ?', cay.try(:id)).size > 0
-    end
-
-    def matching_status
-      Applicant.placement_conducted == true ? (!published_placemet.blank? ? 'Licensed' : 'Not Licensed') : 'In Process...'
     end
 
     def application_status
@@ -66,14 +79,23 @@ class Applicant < ApplicationRecord
       exam.total
     end
 
-    def self.match
-      applicants = Applicant.unplaced_applicants
-      Applicant.iterate_applicants(applicants)
+    def self.license(ay = AcademicYear.current)
+      passing_mark = Setting.first.try(:passing_mark)
+      unless passing_mark.blank?
+      applicants = ay.applicants
+      applicants.each do |a|
+        if a.exam.total_result >= passing_mark
+          licensing_status = Applicant::LICENSED
+        else
+          licensing_status = Applicant::NOT_LICENSED
+        end
+        a.update(licensing_status: licensing_status)
+        end
+        end
     end
 
-    def self.unplaced_applicants
-      Applicant.joins([:program_choices=>:university_choices],:exam).where('total is not NULL').includes(:placement).where(placements: {id: nil}).
-          order('exams.total DESC')
+    def self.unpl_applicants
+      Applicant.joins(:exam).where('total is not NULL and licensing_status is NULL').order('exams.total DESC')
     end
 
     def self.iterate_applicants(applicants)

@@ -2,8 +2,8 @@
   <%= f.error_notification %>
   <h3>Personal Details</h3>
   <fieldset>
-  <%= f.full_error :user_id %>
-  <%= f.input :academic_year_id, as: :hidden, input_html: {value: AcademicYear.current.try(:id)} %>
+  <%= f.association :user, as: :hidden, input_html: {value: current_user.try(:id)} %>
+  <%= f.association :academic_year, as: :hidden, input_html: {value: AcademicYear.current.try(:id)} %>
   <%= f.input :title, label: 'Title', collection: ['Dr'] %>
   <%= f.input :user_id, as: :hidden,input_html: { value: current_user.id } %>
   <%= f.input :first_name %>
@@ -42,28 +42,25 @@
 
   <h3>Attachements</h3>
   <fieldset>
-  <%= f.label :file %>
-  <%= f.file_field :file %>
+  <%= f.input :files %>
 
-  <%= f.label :application_fee %>
-  <%= f.file_field :file %>
+  <%= f.input :files %>
 
-  <%= f.label :two_passport_size_photos %>
-  <%= f.file_field :file %>
+  <%= f.input :files %>
 
   </fieldset>
   <!-- Needs for Disability -->
 
   <h3>Terms and Conditions</h3>
   <fieldset>
-  <%= f.input :do_you_have_needs_for_disability %>
-  <%= f.input :disability, collection: ["Pregnant", "other"] %>
-  <%= f.input :accomodation_request, collection: ["hotel", "Normal House"] %>
-
+  <%= f.input :do_you_have_needs_for_disability, as: :radio_buttons, collection: [['Yes', true], ['No', false]], wrapper: 'horizontal_form' %>
+    <div id='disability'>
+      <%= render partial: 'disability' %>
+    </div>
   <!-- confirmations -->
 
-  <%= f.input :i_understand %>
-  <%= f.input :i_give_my_permission %>
+  <%= f.input :i_understand, label_html: {class: 'transparent_label'}, input_html:{class: "filled-in chk-col-green"} %>
+  <%= f.input :i_give_my_permission, label_html: {class: 'transparent_label'}, input_html:{class: "filled-in chk-col-green"} %>
 
   </fieldset>
 <% end %>

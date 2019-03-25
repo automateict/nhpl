@@ -1,31 +1,27 @@
 <div class="header">
   <h2>
-    Exam and Interview Results
+    Exam Results
   </h2>
 </div>
 <div class="body table-responsive">
   <table class="table table-bordered table-striped table-hover">
     <thead>
   <tr>
-    <th>Applicant</th>
-    <th>Exam total Result</th>
+    <th>Academic Year</th>
+    <th>Application Number</th>
+    <th>Applicant Name</th>
+    <th>Exam Result</th>
     <th>Exam Out of</th>
-    <th>Interview result</th>
-    <th>Interview Out of</th>
-    <th>Exam Weight(%)</th>
-    <th>Interview Weight(%)</th>
     <th>Total/100</th>
   </tr>
     </thead>
     <% unless @exam.blank? %>
       <tr>
-        <td><%= @exam.applicant %></td>
+        <td><%= @exam.applicant.academic_year %></td>
+        <td><%= @exam.applicant.id %></td>
+        <td><%= @exam.applicant.full_name %></td>
         <td><%= @exam.exam_result %></td>
         <td><%= @exam.exam_out_of %></td>
-        <td><%= @exam.interview_result %></td>
-        <td><%= @exam.interview_out_of %></td>
-        <td><%= Setting.first.exam_weight rescue nil %></td>
-        <td><%= Setting.first.interview_weight rescue nil %></td>
         <td><%= @exam.total %></td>
       </tr>
     <% end %>

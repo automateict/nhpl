@@ -58,12 +58,11 @@ $(function () {
             setButtonWavesEffect(event);
         },
         onFinishing: function (event, currentIndex) {
-            form.validate().settings.ignore = ':disabled';
+            form.validate();
             return form.valid();
         },
         onFinished: function (event, currentIndex) {
             $(this).closest('form').submit()
-            swal("Good job!", "Submitted!", "success");
         }
     });
 

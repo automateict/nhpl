@@ -71,6 +71,6 @@ class SettingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def setting_params
-      params.require(:setting).permit(:exam_weight, :interview_weight, :additional_marks_for_female)
+      params.require(:setting).permit(:exam_weight, :interview_weight, :additional_marks_for_female, :passing_mark)
     end
 end

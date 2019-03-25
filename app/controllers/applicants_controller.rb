@@ -9,12 +9,31 @@ class ApplicantsController < ApplicationController
     @applicants = AcademicYear.current.applicants rescue nil
   end
 
+  def licensing
+    @applicants = AcademicYear.current.applicants
+    @licensed = @applicants.where('licensing_status = ?', Applicant::LICENSED)
+    @unlicensed = @applicants - @licensed
+  end
+
   def load_other_university
     university  = University.find_by(id: params[:university])
     if university.name.downcase == 'other'
       @other = true
-      render partial: 'other_university'
     end
+    render partial: 'other_university'
+  end
+
+  def load_disability
+    disability  = params[:disability]
+    if disability == 'true'
+      @disability = true
+    end
+    render partial: 'disability'
+  end
+
+  def license
+    Applicant.license
+    redirect_to placements_path
   end
 
   # GET /applicants/1
@@ -49,6 +68,8 @@ class ApplicantsController < ApplicationController
 
   # GET /applicants/1/edit
   def edit
+    @other = @applicant.university.name.downcase == 'other'
+    @disability = @applicant.do_you_have_needs_for_disability == true
   end
 
   # POST /applicants
@@ -99,7 +120,7 @@ class ApplicantsController < ApplicationController
     def applicant_params
       params.require(:applicant).permit(:user_id, :academic_year_id,:title, :first_name, :father_name, :grand_father_name, :gender, :date_of_birth,
                                         :place_of_birth, :marital_status, :nationality, :region_id, :city, :street, :pobox, :phone,
-                                        :university_id, :university_type_id, :qualification, :date_of_completion, :program_id, :applicant_type_id, :exam_type_id,
+                                        :university_id, :other_university, :university_type_id, :qualification, :date_of_completion, :program_id, :applicant_type_id, :exam_type_id,
                                         :do_you_have_needs_for_disability, :disability, :accomodation_request, :i_understand, :i_give_my_permission,
                                         files: [])
     end

@@ -1,0 +1,64 @@
+<div class="header">
+  <h2>
+    Licensed Applicants
+  </h2>
+</div>
+<div class="body table-responsive">
+  <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+  <thead>
+    <tr>
+      <th>Applicant</th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th>Program</th>
+      <th>Mark</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @licensed.each do |applicant| %>
+      <tr>
+        <td><%= applicant %></td>
+        <td><%= applicant.email %></td>
+        <td><%= applicant.gender %></td>
+        <td><%= applicant.program %></td>
+        <td><%= applicant.exam.total rescue nil %></td>
+        <td><%= applicant.licensing_status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr/>
+
+  <div class="header">
+    <h2>
+      Not Licensed Applicants
+    </h2>
+  </div>
+    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+      <thead>
+      <tr>
+        <th>Applicant</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Mark</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @unlicensed.each do |applicant| %>
+          <tr>
+            <td><%= applicant %></td>
+            <td><%= applicant.gender %></td>
+            <td><%= applicant.user.email %></td>
+            <td><%= applicant.exam.total rescue nil %></td>
+            <td><%= applicant.licensing_status %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+</div>

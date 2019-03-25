@@ -6150,12 +6150,11 @@ fieldset[disabled] .form-control {
         display: list-item; }
 
 .wizard .content {
-  min-height: 245px;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
   border-radius: 0;
-  overflow-y: auto; }
+}
   .wizard .content .body {
     padding: 15px; }
 

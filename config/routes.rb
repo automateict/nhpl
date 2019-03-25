@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     collection do
       get 'instructions'
       get 'load_other_university'
+      get 'load_disability'
+      get 'licensing'
     end
     member do
       get 'details'

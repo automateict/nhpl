@@ -2,6 +2,7 @@ class CreateApplicants < ActiveRecord::Migration[5.1]
   def change
     create_table :applicants do |t|
       t.references :user, foreign_key: true
+      t.references :academic_year, foreign_key: true
       t.string :title
       t.string :first_name
       t.string :father_name
@@ -40,6 +41,7 @@ class CreateApplicants < ActiveRecord::Migration[5.1]
 
       #applicant application status
       t.boolean :status
+      t.string :licensing_status
 
       t.timestamps
     end

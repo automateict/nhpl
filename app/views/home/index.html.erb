@@ -45,19 +45,6 @@
                 </div>
               </div>
           <% end %>
-          <%= link_to programs_path do %>
-              <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box bg-light-green hover-expand-effect">
-                  <div class="icon">
-                    <i class="material-icons">format_list_numbered</i>
-                  </div>
-                  <div class="content">
-                    <div class="text">Total Quotas</div>
-                    <div class="number"><%= Program.count %></div>
-                  </div>
-                </div>
-              </div>
-          <% end %>
       <% end %>
     </div>
 <% end %>
@@ -87,7 +74,7 @@
                         <tr>
                           <td><%= link_to 'Application Details', current_user.current_application rescue nil %></td>
                           <td><%= current_user.current_application.application_status rescue nil %></td>
-                          <td><%= current_user.current_application.matching_status rescue nil %></td>
+                          <td><%= current_user.current_application.licensing_status rescue nil %></td>
                           <td><%= current_user.current_application.published_placemet.program rescue nil %></td>
                         </tr>
                     <% end %>
@@ -138,23 +125,5 @@
           </div>
       </div>
   <% end %>
-      </div>
-  <% end %>
-
-
-<% content_for :header do %>
-<div class="card">
-<div class="body table-responsive">
-  <legend>Applicants Licensing statstics</legend>
-
 </div>
-</div>
-<% end %>
-
-<% content_for :header do %>
-    <div class="card">
-      <div class="body table-responsive">
-        <legend>Licensing Statistics</legend>
-      </div>
-    </div>
 <% end %>

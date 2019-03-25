@@ -1,5 +1,7 @@
 <% if @other == true %>
-<%= simple_fields_for :applicant, @applicant do |f| %>
-  <%= f.input :other_university %>
- <% end %>
- <% end %>
+    <%= simple_fields_for :applicant, @applicant do |f| %>
+      <%= f.input :other_university, label: 'University Name', hint: 'Write your university name here, if your university is not in the list' %>
+    <% end %>
+<% else %>
+
+<% end %>

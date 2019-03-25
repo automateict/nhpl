@@ -1,0 +1,8 @@
+<% if @disability == true %>
+    <%= simple_fields_for :applicant, @applicant do |f| %>
+        <%= f.input :disability, collection: ["Pregnant", "other"] %>
+        <%= f.input :accomodation_request, collection: ["hotel", "Normal House"] %>
+    <% end %>
+<% else %>
+
+<% end %>

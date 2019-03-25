@@ -7,16 +7,10 @@
   <table class="table table-bordered table-striped table-hover dataTable js-exportable">
   <thead>
     <tr>
-      <th>ID number</th>
-      <th>First name</th>
-      <th>Surname</th>
+      <th>Application Number</th>
+      <th>Name</th>
       <th>Gender</th>
-      <th>Email address</th>
-      <th>Exam Hub</th>
-      <th>Exam total</th>
-      <th>80%</th>
-      <th>Interview result</th>
-      <th>Total Mark 100%</th>
+      <th>Total Mark</th>
     </tr>
   </thead>
 
@@ -24,14 +18,8 @@
     <% @applicants.each do |app| %>
       <tr>
         <td><%= app.id %></td>
-        <td><%= app.first_name %></td>
-        <td><%= app.father_name %></td>
+        <td><%= app.full_name %></td>
         <td><%= app.gender %></td>
-        <td><%= app.user.email %></td>
-        <td><%= app.applicant_exam_hub %></td>
-        <td><%= app.exam.exam_result rescue nil %></td>
-        <td><%= app.exam.exam_weight_percentage rescue nil %></td>
-        <td><%= app.exam.interview_result rescue nil %></td>
         <td><%= app.exam.total rescue nil %></td>
       </tr>
     <% end %>

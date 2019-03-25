@@ -10,13 +10,11 @@
       <tr>
         <th>#</th>
         <th>Applicant ID</th>
-        <th>First Name</th>
-        <th>Father Name</th>
-        <th>Grand Father Name</th>
+        <th>Applicant Name</th>
         <th>Gender</th>
         <th>Email</th>
         <th>Phone</th>
-        <th>Exam Hub</th>
+        <th>Application Status</th>
         <th></th>
 
       </tr>
@@ -28,14 +26,12 @@
         <% @applicants.each do |applicant| %>
           <tr>
             <td><%= applicant.id %></td>
-            <td><%= applicant.first_name %></td>
-            <td><%= applicant.father_name %></td>
-            <td><%= applicant.grand_father_name %></td>
+            <td><%= applicant.full_name %></td>
             <td><%= applicant.gender %></td>
             <td><%= applicant.user.email %></td>
             <td><%= applicant.phone %></td>
             <td><%= applicant.application_status %></td>
-            <td><%= link_to 'Details', details_applicant_path(applicant) %></td>
+            <td><%= link_to 'Details', applicant %></td>
           </tr>
           <% counter += 1 %>
         <% end %>
