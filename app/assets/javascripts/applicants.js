@@ -21,4 +21,15 @@ $(function () {
         });
     })
 
+    $("#applicant_applicant_type").change(function(){
+        var applicant_type = $(this).val();
+        $.ajax({
+            url: '/applicants/load_attachments',
+            data: {applicant_type: applicant_type},
+            success: function(response){
+                $('#attachments').html(response)
+            }
+        });
+    })
+
     });

@@ -3,8 +3,6 @@ class Applicant < ApplicationRecord
     belongs_to :user
     belongs_to :academic_year
     belongs_to :region, optional: true
-    belongs_to :applicant_type
-    belongs_to :exam_type
     has_one :match_result
     has_one :applicant_exam_hub, dependent: :destroy
     has_one :applicant_service,  dependent: :destroy
@@ -14,9 +12,16 @@ class Applicant < ApplicationRecord
     has_one :placement
     belongs_to :program
     belongs_to :university
-    has_many_attached :files
+    has_one :license_result
+    has_one_attached :passport_size_photo
+    has_one_attached :passport_or_admission_card
 
-    after_find :set_licensing_status
+    has_one_attached :original_diploma
+    has_one_attached :official_transcript
+    has_one_attached :authenticated_document_from_herqa
+
+
+    after_create :set_application_id
 
     validates :title, :gender, :first_name, :father_name, :grand_father_name,
               :date_of_birth, :marital_status, :phone, :city, :i_understand, :i_give_my_permission, presence: true
@@ -24,26 +29,33 @@ class Applicant < ApplicationRecord
     validates :user_id, uniqueness: {scope: :academic_year_id,
                                      message: 'already started application. Please go to Home --> Application Details and edit your application'}
     STATUSES = ['New']
-    LICENSING_STATUS = [LICENSED = 'Licensed', NOT_LICENSED='Not Licensed']
+    GRADING_STATUS = [PASS = 'Pass', FAIL='Fail']
+    APPLICANT_TYPES = [LOCAL = 'Local', INTERNATIONAL='International']
+    EXAM_TYPES = [MCQ = 'MCQ', OCQI='OCQI', MCQ_AND_OCQI = 'MCQ and OCQI']
 
     scope :complete, -> { where('status is true') }
 
-    def set_licensing_status
-      passing_mark = Setting.first.try(:passing_mark)
-      unless passing_mark.blank?
-        if exam.total || 0 >= passing_mark
-          self.licensing_status = Applicant::LICENSED
-        else
-          self.licensing_status = Applicant::NOT_LICENSED
-        end
-      else
-        self.licensing_status = Applicant::NOT_LICENSED
+    def set_application_id
+      sno = id.to_s
+      while sno.length < 5
+       sno = '0' << sno
+      end
+      update(application_id: university.short_name << sno)
+    end
+
+    def publish_status
+      exam.blank? ? 'In Progress' : (published_result ? 'Published' : 'Not Published')
+    end
+
+    def published_result
+      unless license_result.blank?
+        return license_result if license_result.published?
       end
     end
 
-    def published_placemet
-      unless placement.blank?
-        return placement if placement.published?
+    def published_exam
+      unless exam.blank?
+        return exam if exam.published?
       end
     end
 
@@ -79,23 +91,24 @@ class Applicant < ApplicationRecord
       exam.total
     end
 
-    def self.license(ay = AcademicYear.current)
-      passing_mark = Setting.first.try(:passing_mark)
-      unless passing_mark.blank?
-      applicants = ay.applicants
+    def self.grade(ay = AcademicYear.current)
+      applicants = Applicant.ungraded_applicants
       applicants.each do |a|
-        if a.exam.total_result >= passing_mark
-          licensing_status = Applicant::LICENSED
-        else
-          licensing_status = Applicant::NOT_LICENSED
+        passing_mark = ExamSetting.where('program_id =  and academic_year_id = ?', a.program_id, ay.id).first.try(:passing_mark)
+        unless passing_mark.blank?
+          if a.exam.total_result >= passing_mark
+            grading_status = Applicant::PASS
+          else
+            grading_status = Applicant::FAIL
+          end
+          LicenseResult.create(applicant_id: a.id, result: grading_status)
+        a.update( grading_status: grading_status)
         end
-        a.update(licensing_status: licensing_status)
-        end
-        end
+      end
     end
 
-    def self.unpl_applicants
-      Applicant.joins(:exam).where('total is not NULL and licensing_status is NULL').order('exams.total DESC')
+    def self.ungraded_applicants
+      Applicant.joins(:exam).where('total is not NULL and grading_status is NULL').order('exams.total DESC')
     end
 
     def self.iterate_applicants(applicants)

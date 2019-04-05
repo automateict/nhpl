@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  academic_year: one
+  program: one
+  passing_mark: 1.5
+
+two:
+  academic_year: two
+  program: two
+  passing_mark: 1.5

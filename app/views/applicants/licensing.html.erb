@@ -13,23 +13,25 @@
       <th>Program</th>
       <th>Mark</th>
       <th>Status</th>
+      <th>Publish Status</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @licensed.each do |applicant| %>
+    <% @pass.each do |applicant| %>
       <tr>
         <td><%= applicant %></td>
         <td><%= applicant.email %></td>
         <td><%= applicant.gender %></td>
         <td><%= applicant.program %></td>
         <td><%= applicant.exam.total rescue nil %></td>
-        <td><%= applicant.licensing_status %></td>
+        <td><%= applicant.grading_status %></td>
+        <td><%= applicant.license_result.publish_status %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<%= link_to 'Publish Result', publish_applicants_path, class: 'btn btn-primary' unless @unpublished.blank? %>
 <hr/>
 
   <div class="header">
@@ -43,19 +45,23 @@
         <th>Applicant</th>
         <th>Gender</th>
         <th>Email</th>
+        <th>Program</th>
         <th>Mark</th>
         <th>Status</th>
+        <th>Publish Status</th>
       </tr>
       </thead>
 
       <tbody>
-      <% @unlicensed.each do |applicant| %>
+      <% @fail_or_ungraded.each do |applicant| %>
           <tr>
             <td><%= applicant %></td>
             <td><%= applicant.gender %></td>
             <td><%= applicant.user.email %></td>
+            <td><%= applicant.program %></td>
             <td><%= applicant.exam.total rescue nil %></td>
-            <td><%= applicant.licensing_status %></td>
+            <td><%= applicant.grading_status %></td>
+            <td><%= applicant.license_result.publish_status %></td>
           </tr>
       <% end %>
       </tbody>

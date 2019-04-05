@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Applicant:</strong>
+  <%= @license_result.applicant %>
+</p>
+
+<p>
+  <strong>Result:</strong>
+  <%= @license_result.result %>
+</p>
+
+<%= link_to 'Edit', edit_license_result_path(@license_result) %> |
+<%= link_to 'Back', license_results_path %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Academic year:</strong>
+  <%= @exam_setting.academic_year %>
+</p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @exam_setting.program %>
+</p>
+
+<p>
+  <strong>Passing mark:</strong>
+  <%= @exam_setting.passing_mark %>
+</p>
+
+<%= link_to 'Edit', edit_exam_setting_path(@exam_setting) %> |
+<%= link_to 'Back', exam_settings_path %>

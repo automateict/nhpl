@@ -1,15 +1,18 @@
 <div class="header">
   <h2>
-    Applicant Results
+    Exam Results
   </h2>
 </div>
 <div class="body table-responsive">
   <table class="table table-bordered table-striped table-hover dataTable js-exportable">
   <thead>
     <tr>
-      <th>Application Number</th>
+      <th>Application ID</th>
       <th>Name</th>
+      <th>Email</th>
       <th>Gender</th>
+      <th>University</th>
+      <th>Program</th>
       <th>Total Mark</th>
     </tr>
   </thead>
@@ -17,9 +20,12 @@
   <tbody>
     <% @applicants.each do |app| %>
       <tr>
-        <td><%= app.id %></td>
+        <td><%= app.application_id %></td>
         <td><%= app.full_name %></td>
+        <td><%= app.email %></td>
         <td><%= app.gender %></td>
+        <td><%= app.university %></td>
+        <td><%= app.program %></td>
         <td><%= app.exam.total rescue nil %></td>
       </tr>
     <% end %>
@@ -27,8 +33,7 @@
 </table>
 
 <hr/>
-
-<%= link_to 'New Exam', new_exam_path, class: 'btn btn-primary' %>
+  <%= link_to 'New Exam', new_exam_path, class: 'btn btn-primary' %>
   <%= link_to 'Import Exam Results', import_exam_exams_path, class: 'btn btn-primary' %>
-  <%= link_to 'Import Interview Results', import_interview_exams_path, class: 'btn btn-primary' %>
+  <%= link_to 'Grade Applicants', grade_applicants_path, class: 'btn btn-primary' unless @ungraded_applicants.blank? %>
 </div>

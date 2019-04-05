@@ -2,12 +2,12 @@ class ExamsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
-  before_action :load_applicants, only: [:new,:create, :edit, :update]
+  before_action :load_applicants, only: [:index, :new,:create, :edit, :update]
 
 
   def load_applicants
     academic_year = AcademicYear.current
-    @applicants = academic_year.applicants.complete
+    @applicants = academic_year.applicants.complete.joins(:exam)
   end
 
   def import_exam
@@ -27,7 +27,7 @@ class ExamsController < ApplicationController
   def exam_detail
     user = User.find(params[:user])
     if user.current_application
-      @exam = user.current_application.exam
+      @exam = user.current_application.published_exam
     end
     render 'show'
   end
@@ -35,8 +35,7 @@ class ExamsController < ApplicationController
   # GET /exams
   # GET /exams.json
   def index
-    @applicants = Applicant.all
-    @exams = Exam.all
+    @ungraded_applicants = Applicant.ungraded_applicants
   end
 
   # GET /exams/1

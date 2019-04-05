@@ -3,6 +3,7 @@ class CreateApplicants < ActiveRecord::Migration[5.1]
     create_table :applicants do |t|
       t.references :user, foreign_key: true
       t.references :academic_year, foreign_key: true
+      t.string :application_id
       t.string :title
       t.string :first_name
       t.string :father_name
@@ -29,8 +30,8 @@ class CreateApplicants < ActiveRecord::Migration[5.1]
 
       #I am applying to take exam for the program
       t.references :program, foreign_key: true
-      t.references :applicant_type, foreign_key: true
-      t.references :exam_type, foreign_key: true
+      t.string :applicant_type
+      t.string :exam_type
 
       #application for special needs
       t.boolean :do_you_have_needs_for_disability
@@ -41,7 +42,7 @@ class CreateApplicants < ActiveRecord::Migration[5.1]
 
       #applicant application status
       t.boolean :status
-      t.string :licensing_status
+      t.string :grading_status
 
       t.timestamps
     end

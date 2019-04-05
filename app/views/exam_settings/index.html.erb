@@ -1,0 +1,34 @@
+<div class="header">
+  <h2>
+    Exam Settings
+  </h2>
+</div>
+<div class="body table-responsive">
+  <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+  <thead>
+    <tr>
+      <th>Academic year</th>
+      <th>Program</th>
+      <th>Passing mark</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @exam_settings.each do |exam_setting| %>
+      <tr>
+        <td><%= exam_setting.academic_year %></td>
+        <td><%= exam_setting.program %></td>
+        <td><%= exam_setting.passing_mark %></td>
+        <td>
+          <%= link_to 'Edit', edit_exam_setting_path(exam_setting) %> |
+          <%= link_to 'Delete', exam_setting, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  <hr/>
+
+<%= link_to 'New Exam Setting', new_exam_setting_path %>
+</div>

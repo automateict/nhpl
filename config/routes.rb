@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :license_results
+  resources :exam_settings
   resources :passing_marks
   resources :applicant_types
   resources :exam_types
@@ -40,6 +42,8 @@ Rails.application.routes.draw do
       get 'load_other_university'
       get 'load_disability'
       get 'licensing'
+      get 'grade'
+      get 'load_attachments'
     end
     member do
       get 'details'

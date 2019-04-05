@@ -19,7 +19,7 @@
   <!-- Nav tabs -->
   <ul class="nav nav-tabs tab-nav-right" role="tablist">
     <li role="presentation" class="active"><a href="#personal_details" data-toggle="tab">Personal Details</a></li>
-    <li role="presentation"><a href="#university_choices" data-toggle="tab">Document Attachments</a></li>
+    <li role="presentation"><a href="#documents" data-toggle="tab">Document Attachments</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -28,60 +28,37 @@
       <%= render partial: 'applicant' %>
     </div>
 
-    <div role="tabpanel" class="tab-pane fade" id="exam_hub">
-      <div class="header">
-        <h2>
-          <i class="material-icons">location_on</i>
-          <span>Exam Hub</span>
-        </h2>
-      </div>
-      <div class='row'>
-        <div class='col-sm-6'>
-          Selected Exam Hub
-        </div>
-        <div class='col-sm-6'>
-          
-        </div>
-      </div>
-    </div>
-
-    <div role="tabpanel" class="tab-pane fade" id="services">
-      <div class="header">
-        <h2>
-          <i class="material-icons">work</i>
-          <span>Services</span>
-        </h2>
-      </div>
-      <div class="body table-responsive">
-        <div class='row'>
-          <div class='col-sm-6'>
-            Served at an institution ?
-          </div>
-          <div class='col-sm-6'>
-            
-          </div>
-        </div>
-
-        <div class='row'>
-          <div class='col-sm-6'>
-            sponsor
-          </div>
-          <div class='col-sm-6'>
-            
-          </div>
-        </div>
-
-      </div>
-      </div>
-
-    <div role="tabpanel" class="tab-pane fade" id="declarations">
+    <div role="tabpanel" class="tab-pane fade" id="documents">
       <div class="header">
       <h2>
         <i class="material-icons">question_answer</i>
-        <span>Declarations</span>
+        <span>Documents</span>
       </h2>
-      </div><br/>
-
+      </div>
+      <% if @applicant.applicant_type == Applicant::LOCAL %>
+        <p>
+          <label>Passport Size Photo: </label> <%= image_tag @applicant.passport_size_photo rescue nil %>
+        </p>
+        <p>
+          <label>Passport or Admission Card: </label> <%= link_to 'Download', @applicant.passport_or_admission_card, download: '' %>
+        </p>
+      <% elsif @applicant.applicant_type == Applicant::INTERNATIONAL %>
+        <p>
+          <label>Passport Size Photo: </label> <%= image_tag @applicant.passport_size_photo rescue nil %>
+        </p>
+        <p>
+          <label>Passport or ID Card: </label> <%= link_to 'Download', @applicant.passport_or_admission_card, download: '' %>
+        </p>
+        <p>
+          <label>Original Diploma: </label> <%= link_to 'Download', @applicant.original_diploma, download: '' %>
+        </p>
+        <p>
+          <label>Official Transcript: </label> <%= link_to 'Download', @applicant.official_transcript, download: '' %>
+        </p>
+        <p>
+          <label>Authenticated Document from HERQA: </label> <%= link_to 'Download', @applicant.authenticated_document_from_herqa, download: '' %>
+        </p>
+      <% end %>
     </div>
   </div>
 </div>

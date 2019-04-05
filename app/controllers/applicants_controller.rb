@@ -11,8 +11,9 @@ class ApplicantsController < ApplicationController
 
   def licensing
     @applicants = AcademicYear.current.applicants
-    @licensed = @applicants.where('licensing_status = ?', Applicant::LICENSED)
-    @unlicensed = @applicants - @licensed
+    @pass = @applicants.joins(:license_result).where('license_results.result = ?', Applicant::PASS)
+    @fail_or_ungraded = @applicants - @pass
+    @unpublished = @pass.where('license_results.published = ?', nil || false)
   end
 
   def load_other_university
@@ -23,6 +24,11 @@ class ApplicantsController < ApplicationController
     render partial: 'other_university'
   end
 
+  def load_attachments
+    @applicant_type  = params[:applicant_type]
+    render partial: 'attachments'
+  end
+
   def load_disability
     disability  = params[:disability]
     if disability == 'true'
@@ -31,9 +37,18 @@ class ApplicantsController < ApplicationController
     render partial: 'disability'
   end
 
-  def license
-    Applicant.license
-    redirect_to placements_path
+  def grade
+    Applicant.grade
+    redirect_to licensing_applicants_path
+  end
+
+  def publish
+    @results = LicenseResult.joins(:applicant).where('academic_year_id = ?', AcademicYear.current.try(:id))
+    @results.each do |result|
+      exam = result.applicant.exam
+      result.update(published: true)
+      exam.update(published: true)
+    end
   end
 
   # GET /applicants/1
@@ -68,6 +83,7 @@ class ApplicantsController < ApplicationController
 
   # GET /applicants/1/edit
   def edit
+    @applicant_type = @applicant.applicant_type
     @other = @applicant.university.name.downcase == 'other'
     @disability = @applicant.do_you_have_needs_for_disability == true
   end
@@ -76,6 +92,7 @@ class ApplicantsController < ApplicationController
   # POST /applicants.json
   def create
     @applicant = Applicant.new(applicant_params)
+    @applicant_type = @applicant.applicant_type
     respond_to do |format|
       if @applicant.save
           format.html { redirect_to @applicant, notice: 'Application successfully Saved.' }
@@ -89,6 +106,7 @@ class ApplicantsController < ApplicationController
   # PATCH/PUT /applicants/1
   # PATCH/PUT /applicants/1.json
   def update
+    @applicant_type = @applicant.applicant_type
     respond_to do |format|
       if @applicant.update(applicant_params)
           format.html { redirect_to @applicant, notice: 'Application successfully updated.' }
@@ -120,8 +138,8 @@ class ApplicantsController < ApplicationController
     def applicant_params
       params.require(:applicant).permit(:user_id, :academic_year_id,:title, :first_name, :father_name, :grand_father_name, :gender, :date_of_birth,
                                         :place_of_birth, :marital_status, :nationality, :region_id, :city, :street, :pobox, :phone,
-                                        :university_id, :other_university, :university_type_id, :qualification, :date_of_completion, :program_id, :applicant_type_id, :exam_type_id,
+                                        :university_id, :other_university, :university_type, :qualification, :date_of_completion, :program_id, :applicant_type, :exam_type,
                                         :do_you_have_needs_for_disability, :disability, :accomodation_request, :i_understand, :i_give_my_permission,
-                                        files: [])
+                                        :passport_size_photo, :passport_or_admission_card, :original_diploma, :official_transcript, :authenticated_document_from_herqa)
     end
 end

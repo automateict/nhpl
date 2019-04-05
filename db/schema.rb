@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_05_063017) do
+ActiveRecord::Schema.define(version: 2019_04_01_115455) do
 
   create_table "academic_years", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
   create_table "applicants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "academic_year_id"
+    t.string "application_id"
     t.string "title"
     t.string "first_name"
     t.string "father_name"
@@ -70,20 +71,18 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
     t.string "qualification"
     t.date "date_of_completion"
     t.bigint "program_id"
-    t.bigint "applicant_type_id"
-    t.bigint "exam_type_id"
+    t.string "applicant_type"
+    t.string "exam_type"
     t.boolean "do_you_have_needs_for_disability"
     t.string "disability"
     t.string "accomodation_request"
     t.boolean "i_understand"
     t.boolean "i_give_my_permission"
     t.boolean "status"
-    t.string "licensing_status"
+    t.string "grading_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["academic_year_id"], name: "index_applicants_on_academic_year_id"
-    t.index ["applicant_type_id"], name: "index_applicants_on_applicant_type_id"
-    t.index ["exam_type_id"], name: "index_applicants_on_exam_type_id"
     t.index ["program_id"], name: "index_applicants_on_program_id"
     t.index ["region_id"], name: "index_applicants_on_region_id"
     t.index ["university_id"], name: "index_applicants_on_university_id"
@@ -116,6 +115,16 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
     t.index ["region_id"], name: "index_exam_hubs_on_region_id"
   end
 
+  create_table "exam_settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "academic_year_id"
+    t.bigint "program_id"
+    t.float "passing_mark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["academic_year_id"], name: "index_exam_settings_on_academic_year_id"
+    t.index ["program_id"], name: "index_exam_settings_on_program_id"
+  end
+
   create_table "exam_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -127,12 +136,19 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
     t.bigint "applicant_id"
     t.float "exam_result"
     t.float "exam_out_of"
-    t.float "interview_result"
-    t.float "interview_out_of"
     t.float "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["applicant_id"], name: "index_exams_on_applicant_id"
+  end
+
+  create_table "license_results", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "applicant_id"
+    t.string "result"
+    t.boolean "published"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_id"], name: "index_license_results_on_applicant_id"
   end
 
   create_table "match_results", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -198,6 +214,7 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
 
   create_table "universities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
+    t.string "short_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -226,15 +243,16 @@ ActiveRecord::Schema.define(version: 2019_02_05_063017) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "applicants", "academic_years"
-  add_foreign_key "applicants", "applicant_types"
-  add_foreign_key "applicants", "exam_types"
   add_foreign_key "applicants", "programs"
   add_foreign_key "applicants", "regions"
   add_foreign_key "applicants", "universities"
   add_foreign_key "applicants", "users"
   add_foreign_key "events", "academic_years"
   add_foreign_key "exam_hubs", "regions"
+  add_foreign_key "exam_settings", "academic_years"
+  add_foreign_key "exam_settings", "programs"
   add_foreign_key "exams", "applicants"
+  add_foreign_key "license_results", "applicants"
   add_foreign_key "match_results", "applicants"
   add_foreign_key "match_results", "programs"
   add_foreign_key "match_results", "universities"
