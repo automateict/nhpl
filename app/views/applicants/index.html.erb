@@ -25,7 +25,8 @@
       <% unless @applicants.blank? %>
         <% @applicants.each do |applicant| %>
           <tr>
-            <td><%= applicant.id %></td>
+            <td><%= counter %></td>
+            <td><%= applicant.application_id %></td>
             <td><%= applicant.full_name %></td>
             <td><%= applicant.gender %></td>
             <td><%= applicant.user.email %></td>

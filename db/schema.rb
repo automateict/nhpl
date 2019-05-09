@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.float "exam_result"
     t.float "exam_out_of"
     t.float "total"
+    t.boolean "published"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["applicant_id"], name: "index_exams_on_applicant_id"
@@ -186,6 +187,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
 
   create_table "programs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
+    t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
