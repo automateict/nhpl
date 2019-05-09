@@ -6,7 +6,19 @@ class ApplicantsController < ApplicationController
   # GET /applicants
   # GET /applicants.json
   def index
-    @applicants = AcademicYear.current.applicants rescue nil
+    @applicants = current_user.applicants rescue nil
+  end
+
+  def import_applicants
+    if request.post?
+      @applicants = Applicant.import_applicants(params[:import_applicant][:applicants_csv_file], params[:import_applicant][:academic_year] )
+      flash[:notice] = @applicants.blank? ? 'No applicants imported' : 'Applicants imported. Check the imported list below'
+    end
+  end
+
+  def university_applicants_by_program
+    applicants = current_user.applicants.joins(:program).group('programs.name').count
+    render json: applicants
   end
 
   def licensing

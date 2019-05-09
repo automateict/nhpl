@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   layout 'application'
   before_action :set_user, only: [:show, :edit, :update, :destroy,:confirm]
 
+  def load_institutions
+    @role  = params[:role]
+    render partial: 'institution'
+  end
+
   # GET /users
   # GET /users.json
   def index
@@ -29,13 +34,14 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @role = @user.role
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    @role = user_params[:role]
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_path, notice: 'User was successfully created.' }
@@ -50,6 +56,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @role = user_params[:role]
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
@@ -83,6 +90,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :admin)
+      params.require(:user).permit(:email, :password, :password_confirmation, :role, :university_id, :admin)
     end
 end

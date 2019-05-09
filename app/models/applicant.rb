@@ -35,6 +35,31 @@ class Applicant < ApplicationRecord
 
     scope :complete, -> { where('status is true') }
 
+    def self.import_applicants(file, academic_year)
+      applicants = []
+      CSV.foreach(file.path, :headers=>true) do |row|
+        first_name = row[0]
+        father_name = row[1]
+        grand_father_name = row[2]
+        gender = row[3]
+        email = row[4]
+        university = University.find_by(short_name: row[5])
+        program = Program.find_by(code: row[6])
+        university = University.find_by(short_name: row[5])
+          unless program.blank? or university.blank?
+            attrbts = {academic_year_id: academic_year, first_name: first_name, father_name: father_name,
+                       grand_father_name: grand_father_name, gender: gender, university_id: university.id,
+                       program_id: program.id }
+            applicant = Applicant.find_by(attrbts) || Applicant.new(attrbts)
+            applicant.attributes = attrbts
+            applicant.save(validate: false)
+            applicants << applicant
+          end
+      end
+      return applicants
+    end
+
+
     def set_application_id
       sno = id.to_s
       while sno.length < 5

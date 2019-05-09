@@ -6,5 +6,8 @@
 //= require jquery_nested_form
 //= require bootstrap-wysihtml5
 //= require applicants
+//= require users
+//= require highcharts
+//= require chartkick
 //= require AdminBSBMaterialDesign/index
 //= require global

@@ -38,12 +38,15 @@ Rails.application.routes.draw do
   resources :programs
   resources :applicants do
     collection do
+      get 'import_applicants'
+      post 'import_applicants'
       get 'instructions'
       get 'load_other_university'
       get 'load_disability'
       get 'licensing'
       get 'grade'
       get 'load_attachments'
+      get 'university_applicants_by_program'
     end
     member do
       get 'details'
@@ -60,6 +63,9 @@ Rails.application.routes.draw do
     resources :users do
       member do
         get 'confirm'
+      end
+      collection do
+        get 'load_institutions'
       end
     end
   end

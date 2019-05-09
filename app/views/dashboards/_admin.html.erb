@@ -1,0 +1,45 @@
+<%= content_for :header do %>
+<div class="row clearfix">
+  <% if current_user.has_role(User::ADMIN) %>
+      <%= link_to applicants_path do %>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-teal hover-expan-effect">
+              <div class="icon">
+                <i class="material-icons">people</i>
+              </div>
+              <div class="content">
+                <div class="text">Applicants</div>
+                <div class="number"><%= current_user.applicants.count  %></div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+      <%= link_to programs_path do %>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-pink hover-expand-effect">
+              <div class="icon">
+                <i class="material-icons">playlist_add_check</i>
+              </div>
+              <div class="content">
+                <div class="text">Programs</div>
+                <div class="number"><%= Program.count %></div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+      <%= link_to universities_path do %>
+          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-cyan hover-expand-effect">
+              <div class="icon">
+                <i class="material-icons">school</i>
+              </div>
+              <div class="content">
+                <div class="text">Universities</div>
+                <div class="number"><%= University.count %></div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+  <% end %>
+</div>
+<% end %>

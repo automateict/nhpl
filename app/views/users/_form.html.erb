@@ -3,10 +3,10 @@
     <%= f.input :email %>
     <%= f.input :password, as: :password, autocomplete: "off" %>
     <%= f.input :password_confirmation, as: :password, autocomplete: "off" %>
-    <center>
-      <%= f.check_box :admin, id: "admin", class: "filled-in chk-col-pink" %>
-      <label for="admin">Admin</label>
-    </center>
+    <%= f.input :role, collection: User::ROLES %>
+    <div id='institution'>
+      <%= render partial: 'institution' %>
+    </div>
     <hr/>
 <div class="form-actions">
 <%= f.button :submit, class: 'btn btn-primary' %>

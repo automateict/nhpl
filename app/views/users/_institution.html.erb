@@ -1,0 +1,5 @@
+<% if @role == User::INSTITUTION %>
+    <%= simple_fields_for :user, @user do |f| %>
+        <%= f.input :university_id, collection: University.all %>
+    <% end %>
+<% end %>

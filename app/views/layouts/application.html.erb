@@ -92,6 +92,7 @@
         <aside id="leftsidebar" class="sidebar">
             <!-- Menu -->
             <%= render partial: 'menus/admin' %>
+          <%= render partial: 'menus/institution' %>
             <%= render partial: 'menus/applicant' %>
             <!-- #Menu -->
             <!-- Footer -->
@@ -109,9 +110,7 @@
         <div class="row clearfix"  style="min-height: 500px;">
           <%= render partial: 'shared/flash_messages' %>
           <%= yield :header %>
-            <div class="card">
               <%= yield %>
-            </div>
         </div>
       </div>
     </section>

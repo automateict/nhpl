@@ -1,0 +1,69 @@
+<div class="body">
+  <h5>Save applicants list in CSV format in the same order as follows:</h5>
+<table class="table">
+  <tr>
+    <th>First Name</th>
+    <th>Father Name</th>
+    <th>Grand Father Name</th>
+    <th>Gender</th>
+    <th>Email</th>
+    <th>University Code</th>
+    <th>Program Code</th>
+  </tr>
+  <tr>
+    <td>AAA</td>
+    <td>BBB</td>
+    <th>CCC</th>
+    <td>Male</td>
+    <td>abc@example.com</td>
+    <td>U1</td>
+    <td>P1</td>
+  </tr>
+</table>
+
+<div class="body">
+  <%= simple_form_for :import_applicant, :multipart=>true do |f| %>
+      <%= f.input :academic_year, collection: [AcademicYear.current] %>
+      <%= f.input :applicants_csv_file, as: :file %>
+    <hr/>
+    <%= submit_tag 'Import', class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+<% unless @applicants.blank? %>
+<div class="header">
+  <h2>
+    Imported Applicants
+  </h2>
+</div>
+<div class="body table-responsive">
+  <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+    <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Father Name</th>
+      <th>Grand Father Name</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>University Code</th>
+      <th>Program</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @applicants.each do |applicant| %>
+        <tr>
+          <td><%= applicant.first_name %></td>
+          <td><%= applicant.father_name %></td>
+          <td><%= applicant.grand_father_name %></td>
+          <td><%= applicant.gender %></td>
+          <td><%= applicant.applicant.user.email rescue nil %></td>
+          <td><%= applicant.university %></td>
+          <td><%= applicant.program %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+</div>

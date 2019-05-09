@@ -1,43 +1,43 @@
-<% if current_user.admin? %>
     <div class="header">
         <h2>
             Applicants
         </h2>
     </div>
-      <div class=" body table-responsive">
+    <div class=" body table-responsive">
       <table class="table table-bordered table-striped table-hover dataTable js-exportable">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Applicant ID</th>
-        <th>Applicant Name</th>
-        <th>Gender</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Application Status</th>
-        <th></th>
-
-      </tr>
-    </thead>
-
-    <tbody>
-      <% counter = 1 %>
-      <% unless @applicants.blank? %>
-        <% @applicants.each do |applicant| %>
+        <thead>
           <tr>
-            <td><%= counter %></td>
-            <td><%= applicant.application_id %></td>
-            <td><%= applicant.full_name %></td>
-            <td><%= applicant.gender %></td>
-            <td><%= applicant.user.email %></td>
-            <td><%= applicant.phone %></td>
-            <td><%= applicant.application_status %></td>
-            <td><%= link_to 'Details', applicant %></td>
+            <th>#</th>
+            <th>Applicant ID</th>
+            <th>Applicant Name</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Application Status</th>
+            <th></th>
+
           </tr>
-          <% counter += 1 %>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-      </div>
-<% end %>
+        </thead>
+
+        <tbody>
+          <% counter = 1 %>
+          <% unless @applicants.blank? %>
+            <% @applicants.each do |applicant| %>
+              <tr>
+                <td><%= counter %></td>
+                <td><%= applicant.application_id %></td>
+                <td><%= applicant.full_name %></td>
+                <td><%= applicant.gender %></td>
+                <td><%= applicant.user.email rescue nil %></td>
+                <td><%= applicant.phone %></td>
+                <td><%= applicant.application_status %></td>
+                <td><%= link_to 'Details', applicant %></td>
+              </tr>
+              <% counter += 1 %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+
+    <%= link_to 'Import Applicants', import_applicants_applicants_path, class: 'btn btn-primary' %>
+    </div>
