@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Applicant:</strong>
+  <%= @appeal.applicant %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @appeal.subject %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @appeal.body %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @appeal.status %>
+</p>
+
+<%= link_to 'Edit', edit_appeal_path(@appeal) %> |
+<%= link_to 'Back', appeals_path %>

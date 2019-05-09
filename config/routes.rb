@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appeals
   resources :license_results
   resources :exam_settings
   resources :passing_marks

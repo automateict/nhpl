@@ -1,0 +1,14 @@
+<%= simple_form_for(@appeal) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :applicant, as: :hidden, input_html: {value: current_user.applicant.id}%>
+    <%= f.input :subject, label: 'Subject' %>
+    <%= f.input :body, label: 'Reason for appeal' %>
+    
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
