@@ -16,6 +16,14 @@
         <% end %>
         </li>
 
+
+        <li>
+        <%= link_to appeals_path(user: current_user.id) do %>
+            <i class="material-icons">people</i>
+            <span>Appeal</span>
+        <% end %>
+        </li>
+
     </ul>
 </div>
 <% end %>

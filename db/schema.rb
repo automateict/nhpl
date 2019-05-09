@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_01_115455) do
+ActiveRecord::Schema.define(version: 2019_05_09_074507) do
 
-  create_table "academic_years", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "academic_years", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -40,14 +40,24 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "applicant_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "appeals", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.bigint "applicant_id"
+    t.string "subject"
+    t.text "body"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_id"], name: "index_appeals_on_applicant_id"
+  end
+
+  create_table "applicant_types", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "applicants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "applicants", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "academic_year_id"
     t.string "application_id"
@@ -89,13 +99,21 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.index ["user_id"], name: "index_applicants_on_user_id"
   end
 
-  create_table "application_instructions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "application_instructions", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "equipment", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.string "name"
+    t.bigint "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_equipment_on_store_id"
+  end
+
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "academic_year_id"
     t.string "name"
     t.date "start_time"
@@ -105,7 +123,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.index ["academic_year_id"], name: "index_events_on_academic_year_id"
   end
 
-  create_table "exam_hubs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "exam_hubs", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.bigint "region_id"
     t.string "city"
@@ -115,7 +133,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.index ["region_id"], name: "index_exam_hubs_on_region_id"
   end
 
-  create_table "exam_settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "exam_settings", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "academic_year_id"
     t.bigint "program_id"
     t.float "passing_mark"
@@ -125,14 +143,14 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.index ["program_id"], name: "index_exam_settings_on_program_id"
   end
 
-  create_table "exam_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "exam_types", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "exams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "exams", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "applicant_id"
     t.float "exam_result"
     t.float "exam_out_of"
@@ -143,7 +161,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.index ["applicant_id"], name: "index_exams_on_applicant_id"
   end
 
-  create_table "license_results", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "license_results", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "applicant_id"
     t.string "result"
     t.boolean "published"
@@ -152,7 +170,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.index ["applicant_id"], name: "index_license_results_on_applicant_id"
   end
 
-  create_table "match_results", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "match_results", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "applicant_id"
     t.bigint "program_id"
     t.bigint "university_id"
@@ -163,7 +181,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.index ["university_id"], name: "index_match_results_on_university_id"
   end
 
-  create_table "passing_marks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "passing_marks", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "academic_year_id"
     t.bigint "program_id"
     t.float "passing_mark"
@@ -173,7 +191,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.index ["program_id"], name: "index_passing_marks_on_program_id"
   end
 
-  create_table "placements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "placements", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "applicant_id"
     t.bigint "program_id"
     t.bigint "university_id"
@@ -185,20 +203,20 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.index ["university_id"], name: "index_placements_on_university_id"
   end
 
-  create_table "programs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "programs", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "regions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "regions", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "settings", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.float "exam_weight"
     t.float "interview_weight"
     t.float "additional_marks_for_female"
@@ -207,21 +225,28 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "timers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "stores", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.string "name"
+    t.string "owner"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "timers", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "event"
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "universities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "universities", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "short_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -244,11 +269,13 @@ ActiveRecord::Schema.define(version: 2019_04_01_115455) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "appeals", "applicants"
   add_foreign_key "applicants", "academic_years"
   add_foreign_key "applicants", "programs"
   add_foreign_key "applicants", "regions"
   add_foreign_key "applicants", "universities"
   add_foreign_key "applicants", "users"
+  add_foreign_key "equipment", "stores"
   add_foreign_key "events", "academic_years"
   add_foreign_key "exam_hubs", "regions"
   add_foreign_key "exam_settings", "academic_years"
