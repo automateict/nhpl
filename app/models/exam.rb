@@ -1,7 +1,7 @@
 class Exam < ApplicationRecord
   belongs_to :applicant
 
-  before_save :set_total, if: :exam_and_interview_result_exists
+  #before_save :set_total, if: :exam_and_interview_result_exists
 
   def exam_and_interview_result_exists
     !exam_result.blank? and !interview_result.blank?
@@ -10,22 +10,17 @@ class Exam < ApplicationRecord
   def self.import_exam(file)
     exams = []
     CSV.foreach(file.path, :headers=>true) do |row|
-      applicant_id = row[0]
+      applicant = Applicant.find_by(application_id: row[0])
       email = row[1]
-      exam_result = row[2]
-      exam_out_of = row[3]
-      unless email.blank?
-        user = User.find_by_email(email)
-	      applicant = user.applicant
-	      unless applicant.blank?
-		      attrbts = {applicant_id: applicant.id,exam_result: exam_result,
+      program = Program.find_by(code: row[2])
+      exam_result = row[3]
+      exam_out_of = row[4]
+		      attrbts = {applicant_id: applicant.id, exam_result: exam_result,
 		           exam_out_of: exam_out_of }
-		      exam = Exam.find_by_applicant_id(applicant.id) || new
-		      exam.attributes = attrbts
-		      exam.save!
-		      exams << exam
-        end
-      end
+		      ex = Exam.find_by(applicant_id: applicant.id) || new
+		      ex.attributes = attrbts
+		      ex.save(validate: false)
+		      exams << ex
     end
     return exams
   end

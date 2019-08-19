@@ -32,4 +32,15 @@ $(function () {
         });
     })
 
+    $("#report_program").change(function(){
+        var program = $(this).val();
+        $.ajax({
+            url: '/applicants/applicants_status',
+            data: {program: program},
+            success: function(response){
+                $('#applicants_status_report').html(response)
+            }
+        });
+    })
+
     });

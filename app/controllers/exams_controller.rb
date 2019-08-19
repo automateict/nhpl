@@ -35,7 +35,7 @@ class ExamsController < ApplicationController
   # GET /exams
   # GET /exams.json
   def index
-    @ungraded_applicants = Applicant.ungraded_applicants
+    @applicants = Applicant.all
   end
 
   # GET /exams/1

@@ -5,6 +5,12 @@ class Program < ApplicationRecord
     has_many :placements
     validates :name, presence: true
 
+
+    def ay_applicants_by_university_by_license_status(ay = AcademicYear.current, university, status)
+        ay.applicants.joins(:exam=>[:applicant=>:license_result]).where('applicants.program_id = ? and applicants.university_id = ? and result = ?',
+                                                          self.id, university, status)
+    end
+
     def universities(academic_year=AcademicYear.current.try(:id))
         University.joins(:program_quotas).where('academic_year_id = ? and program_id = ?', 
         academic_year,self.id)

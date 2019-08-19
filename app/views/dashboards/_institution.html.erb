@@ -41,16 +41,27 @@
           </div>
       <% end %>
   <% end %>
-</div>
-<% end %>
-
-<div class="col-sm-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      Applicants by Program
-    </div>
-    <div class="panel-body">
-      <%= column_chart university_applicants_by_program_applicants_path %>
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Applicants by Program
+      </div>
+      <div class="panel-body">
+        <%= column_chart university_applicants_by_program_applicants_path %>
+      </div>
     </div>
   </div>
+
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Applicants by Program by Status
+      </div>
+      <div class="panel-body">
+        <%= column_chart university_applicants_status_by_program_applicants_path %>
+      </div>
+    </div>
+  </div>
+
 </div>
+<% end %>

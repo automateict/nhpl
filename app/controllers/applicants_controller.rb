@@ -21,6 +21,32 @@ class ApplicantsController < ApplicationController
     render json: applicants
   end
 
+  def applicants_by_program_by_university
+    applicants = []
+    Program.all.each do |p|
+      applicants << {name: p.name, data: University.all.map{|u| [u.name, u.ay_applicants_by_program(p.id).count]} }
+    end
+    render json: applicants
+  end
+
+  def university_applicants_status_by_program
+    applicants = []
+    Applicant::GRADING_STATUS.each do |gs|
+      applicants << {name: gs, data: Program.all.map{|p| [p.name, p.ay_applicants_by_university_by_license_status(current_user.try(:university_id), gs).count]} }
+    end
+    render json: applicants
+  end
+
+  def applicants_status
+      @applicants = []
+      p = Program.find_by(id: params[:program])
+      Applicant::GRADING_STATUS.each do |gs|
+        @applicants << {name: gs, data: University.all.map{|u| [u.name, p.ay_applicants_by_university_by_license_status(u.id, gs).count]} }
+      end
+      @applicants = @applicants.to_json
+      render partial: 'applicants_status'
+  end
+
   def licensing
     @applicants = AcademicYear.current.applicants
     @pass = @applicants.joins(:license_result).where('license_results.result = ?', Applicant::PASS)

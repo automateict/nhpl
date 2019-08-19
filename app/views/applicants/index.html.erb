@@ -13,6 +13,8 @@
             <th>Gender</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>University</th>
+            <th>Program</th>
             <th>Application Status</th>
             <th></th>
 
@@ -30,6 +32,8 @@
                 <td><%= applicant.gender %></td>
                 <td><%= applicant.user.email rescue nil %></td>
                 <td><%= applicant.phone %></td>
+                <td><%= applicant.university %></td>
+                <td><%= applicant.program %></td>
                 <td><%= applicant.application_status %></td>
                 <td><%= link_to 'Details', applicant %></td>
               </tr>

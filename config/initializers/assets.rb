@@ -12,4 +12,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css.scss, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
-Rails.application.config.assets.precompile += %w( applicant_services.js AdminBSBMaterialDesign/form_index.js AdminBSBMaterialDesign/jquery_table_index.js)
+Rails.application.config.assets.precompile += %w( AdminBSBMaterialDesign/jquery/jquery global.js jquery-ui/jquery-ui applicant_services.js AdminBSBMaterialDesign/form_index.js AdminBSBMaterialDesign/jquery_table_index.js highcharts chartkick)

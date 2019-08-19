@@ -47,7 +47,7 @@
     <% @exams.each do |exam| %>
         <tr>
           <td><%= exam.applicant %></td>
-          <td><%= exam.applicant.user.email %></td>
+          <td><%= exam.applicant.user.email rescue nil %></td>
           <td><%= exam.exam_result %></td>
           <td><%= exam.exam_out_of %></td>
         </tr>

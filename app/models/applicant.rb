@@ -65,7 +65,7 @@ class Applicant < ApplicationRecord
       while sno.length < 5
        sno = '0' << sno
       end
-      update(application_id: university.short_name << sno)
+      update(application_id:university.short_name << sno)
     end
 
     def publish_status
@@ -117,11 +117,11 @@ class Applicant < ApplicationRecord
     end
 
     def self.grade(ay = AcademicYear.current)
-      applicants = Applicant.ungraded_applicants
+      applicants = Applicant.all
       applicants.each do |a|
-        passing_mark = ExamSetting.where('program_id =  and academic_year_id = ?', a.program_id, ay.id).first.try(:passing_mark)
+        passing_mark = ExamSetting.where('program_id = ? and academic_year_id = ?', a.program_id, ay.id).first.try(:passing_mark)
         unless passing_mark.blank?
-          if a.exam.total_result >= passing_mark
+          if a.exam and a.exam.exam_result >= passing_mark
             grading_status = Applicant::PASS
           else
             grading_status = Applicant::FAIL
@@ -133,7 +133,7 @@ class Applicant < ApplicationRecord
     end
 
     def self.ungraded_applicants
-      Applicant.joins(:exam).where('total is not NULL and grading_status is NULL').order('exams.total DESC')
+      Applicant.joins(:license_result).where(license_results: {id: nil})
     end
 
     def self.iterate_applicants(applicants)

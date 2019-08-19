@@ -21,11 +21,11 @@
     <% @pass.each do |applicant| %>
       <tr>
         <td><%= applicant %></td>
-        <td><%= applicant.email %></td>
+        <td><%= applicant.user.email rescue nil %></td>
         <td><%= applicant.gender %></td>
         <td><%= applicant.program %></td>
-        <td><%= applicant.exam.total rescue nil %></td>
-        <td><%= applicant.grading_status %></td>
+        <td><%= applicant.exam.exam_total rescue nil %></td>
+        <td><%= applicant.license_result.result %></td>
         <td><%= applicant.license_result.publish_status %></td>
       </tr>
     <% end %>
@@ -57,11 +57,11 @@
           <tr>
             <td><%= applicant %></td>
             <td><%= applicant.gender %></td>
-            <td><%= applicant.user.email %></td>
+            <td><%= applicant.user.email rescue nil %></td>
             <td><%= applicant.program %></td>
             <td><%= applicant.exam.total rescue nil %></td>
             <td><%= applicant.grading_status %></td>
-            <td><%= applicant.license_result.publish_status %></td>
+            <td><%= applicant.license_result.publish_status rescue nil %></td>
           </tr>
       <% end %>
       </tbody>

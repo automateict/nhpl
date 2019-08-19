@@ -22,11 +22,11 @@
       <tr>
         <td><%= app.application_id %></td>
         <td><%= app.full_name %></td>
-        <td><%= app.email %></td>
+        <td><%= app.user.email rescue nil %></td>
         <td><%= app.gender %></td>
         <td><%= app.university %></td>
         <td><%= app.program %></td>
-        <td><%= app.exam.total rescue nil %></td>
+        <td><%= app.exam.exam_result rescue nil %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,5 +35,5 @@
 <hr/>
   <%= link_to 'New Exam', new_exam_path, class: 'btn btn-primary' %>
   <%= link_to 'Import Exam Results', import_exam_exams_path, class: 'btn btn-primary' %>
-  <%= link_to 'Grade Applicants', grade_applicants_path, class: 'btn btn-primary' unless @ungraded_applicants.blank? %>
+  <%= link_to 'Grade Applicants', grade_applicants_path, class: 'btn btn-primary' unless @applicants.blank? %>
 </div>
