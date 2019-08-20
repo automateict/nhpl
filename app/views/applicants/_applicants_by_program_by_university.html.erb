@@ -1,0 +1,16 @@
+<table class="table table-bordered table-responsive">
+  <tr>
+  <th></th>
+  <% University.all.each do |u| %>
+    <th><%= u %></th>
+  <% end %>
+  </tr>
+  <% Program.all.each do |p| %>
+  <tr>
+    <th><%= p %></th>
+    <% University.all.each do |u| %>
+      <th><%= u.ay_applicants_by_program(p.id).count %></th>
+    <% end %>
+  </tr>
+  <% end %>
+</table>

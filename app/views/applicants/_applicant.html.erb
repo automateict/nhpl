@@ -60,6 +60,6 @@
   </tr>
   <tr>
     <th>Email</th>
-    <td><%= @applicant.user.email %></td>
+    <td><%= @applicant.user.email rescue nil %></td>
   </tr>
 </table>

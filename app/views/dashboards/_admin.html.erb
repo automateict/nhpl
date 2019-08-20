@@ -1,6 +1,6 @@
 <%= content_for :header do %>
 <div class="row clearfix">
-  <% if current_user.has_role(User::ADMIN) %>
+  <% if current_user.admin? %>
       <%= link_to applicants_path do %>
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box bg-teal hover-expan-effect">
@@ -47,7 +47,21 @@
         Applicants by Program by University
       </div>
       <div class="panel-body">
-        <%= column_chart applicants_by_program_by_university_applicants_path %>
+        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+          <li role="presentation" class="active"><a href="#applicants_by_table" data-toggle="tab">Tabular</a></li>
+          <li role="presentation"><a href="#applicants_by_graph" data-toggle="tab">Graphical</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane fade in active" id="applicants_by_table">
+            <%= render partial: '/applicants/applicants_by_program_by_university'  %>
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade" id="applicants_by_graph">
+            <%= column_chart applicants_by_program_by_university_applicants_path %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -58,11 +72,10 @@
         Applicants by Program by Status
       </div>
       <div class="panel-body">
-        <%= simple_form_for :report, url:  applicants_status_applicants_path, remote: true, html: { novalidate: true } do |f| %>
+        <%= simple_form_for :report, url:  applicants_status_applicants_path, remote: true do |f| %>
             <%=  f.input :program, collection: Program.all %>
         <% end %>
         <div id="applicants_status_report">
-          <%= column_chart LicenseResult.group(:result).count %>
           <%= render partial: '/applicants/applicants_status'  %>
         </div>
       </div>

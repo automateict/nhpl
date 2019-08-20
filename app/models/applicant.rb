@@ -65,7 +65,7 @@ class Applicant < ApplicationRecord
       while sno.length < 5
        sno = '0' << sno
       end
-      update(application_id:university.short_name << sno)
+      update_attribute('application_id', university.short_name << sno)
     end
 
     def publish_status
@@ -126,8 +126,13 @@ class Applicant < ApplicationRecord
           else
             grading_status = Applicant::FAIL
           end
-          LicenseResult.create(applicant_id: a.id, result: grading_status)
-        a.update( grading_status: grading_status)
+          license_result = a.license_result
+          unless license_result.blank?
+            license_result.update(result: grading_status)
+          else
+            LicenseResult.create(applicant_id: a.id, result: grading_status)
+          end
+        a.update(grading_status: grading_status)
         end
       end
     end

@@ -1,2 +1,16 @@
-<%= javascript_include_tag 'application' %>
-<%= column_chart @applicants %>
+<table class="table table-bordered table-responsive">
+  <tr>
+    <th></th>
+    <% University.all.each do |u| %>
+        <th><%= u %></th>
+    <% end %>
+  </tr>
+  <% Applicant::GRADING_STATUS.each do |gs| %>
+      <tr>
+        <th><%= gs %></th>
+        <% University.all.each do |u| %>
+            <th><%= @program.ay_applicants_by_university_by_license_status(u.id, gs).count rescue nil %></th>
+        <% end %>
+      </tr>
+  <% end %>
+</table>

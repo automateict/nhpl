@@ -5,12 +5,10 @@
     </div>
 <% end %>
 
-<% if current_user.has_role(User::ADMIN) %>
+<% if current_user.admin? %>
     <%= render partial: '/dashboards/admin' %>
-<% end %>
-<% if current_user.has_role(User::APPLICANT) %>
+<% elsif current_user.has_role(User::APPLICANT) %>
     <%= render partial: 'dashboards/applicant' %>
-<% end %>
-<% if current_user.has_role(User::INSTITUTION) %>
+<% elsif current_user.has_role(User::INSTITUTION) %>
     <%= render partial: 'dashboards/institution'  %>
 <% end %>

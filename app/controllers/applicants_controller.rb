@@ -39,9 +39,9 @@ class ApplicantsController < ApplicationController
 
   def applicants_status
       @applicants = []
-      p = Program.find_by(id: params[:program])
+      @program = Program.find_by(id: params[:program])
       Applicant::GRADING_STATUS.each do |gs|
-        @applicants << {name: gs, data: University.all.map{|u| [u.name, p.ay_applicants_by_university_by_license_status(u.id, gs).count]} }
+        @applicants << {name: gs, data: University.all.map{|u| [u.name, @program.ay_applicants_by_university_by_license_status(u.id, gs).count]} }
       end
       @applicants = @applicants.to_json
       render partial: 'applicants_status'
