@@ -5,9 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :applicant
+  after_create :set_role
 
   ROLES = [ADMIN = 'Admin', APPLICANT = 'Applicant', INSTITUTION = 'Institution']
 
+  def set_role
+    unless role
+      self.update_attribute('role', User::APPLICANT)
+    end
+  end
   def has_role(user_role)
     user_role == role
   end
