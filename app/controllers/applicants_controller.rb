@@ -51,7 +51,7 @@ class ApplicantsController < ApplicationController
     @applicants = AcademicYear.current.applicants
     @pass = @applicants.joins(:license_result).where('license_results.result = ?', Applicant::PASS)
     @fail_or_ungraded = @applicants - @pass
-    @unpublished = @pass.where('license_results.published = ?', nil || false)
+    @unpublished = @applicants.joins(:license_result).where(license_results: {published: nil})
   end
 
   def load_other_university
@@ -85,8 +85,9 @@ class ApplicantsController < ApplicationController
     @results.each do |result|
       exam = result.applicant.exam
       result.update(published: true)
-      exam.update(published: true)
+      exam.update(published: true) unless exam.blank?
     end
+    redirect_to licensing_applicants_path
   end
 
   # GET /applicants/1

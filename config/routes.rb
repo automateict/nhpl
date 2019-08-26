@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       get 'applicants_by_program_by_university'
       get 'university_applicants_status_by_program'
       get 'applicants_status'
+      get 'publish'
     end
     member do
       get 'details'

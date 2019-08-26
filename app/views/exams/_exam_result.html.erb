@@ -1,5 +1,5 @@
 <% if @search_button_clicked==true %>
-  <% if !@applicant.blank? and !@applicant.exam.blank? %>
+  <% if !@applicant.blank? and !@applicant.exam.blank? and @applicant.exam.published %>
   <table class="table">
     <tr>
       <th>Full Name</th>
@@ -27,27 +27,4 @@
    <h4 class="alert alert-warning"> No exam result found with this ID Number and Name</h4>
   <% end %>
 <% else %>
-    <table class="table">
-      <tr>
-        <th>Full Name</th>
-        <td></td>
-      </tr>
-      <tr>
-        <th>University</th>
-        <td></td>
-      </tr>
-      <tr>
-        <th>Program</th>
-        <td></td>
-      </tr>
-
-      <tr>
-        <th>Exam Result (%)</th>
-        <td></td>
-      </tr>
-      <tr>
-        <th>License Status</th>
-        <td></td>
-      </tr>
-    </table>
 <% end %>
