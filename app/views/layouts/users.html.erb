@@ -36,15 +36,11 @@
     <div class="login-box">
         <div class="logo">
           <a><%= image_tag 'fdre.png', size: '40x40' %></a>
-            <a href="javascript:void(0);">FMOH <b> NHPL </b></a>
-          <small><b>Federal Ministry of Health | National Health Professionals Licensing Program</b></small>
+            <a href="javascript:void(0);">Federal Ministry of Health <br/>
+              National Health Professionals Licensing Program</a>
         </div>
-        <div class="card">
-            <div class="body">
-              <%= render partial: 'shared/flash_messages' %>
+      <%= render partial: 'shared/flash_messages' %>
                 <%= yield %>
-            </div>
-        </div>
     </div>
 </body>
 

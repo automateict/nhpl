@@ -1,10 +1,15 @@
 class ExamsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:check_exam]
   load_and_authorize_resource
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
   before_action :load_applicants, only: [:index, :new,:create, :edit, :update]
 
 
+  def check_exam
+    @search_button_clicked = true
+    @applicant = Applicant.find_by(application_id: params[:id_number], first_name: params[:first_name])
+    render partial: '/exams/exam_result'
+  end
   def load_applicants
     academic_year = AcademicYear.current
     @applicants = academic_year.applicants.complete.joins(:exam)

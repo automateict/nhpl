@@ -21,7 +21,7 @@ class Applicant < ApplicationRecord
     has_one_attached :authenticated_document_from_herqa
 
 
-    after_create :set_application_id
+    #after_create :set_application_id
 
     validates :title, :gender, :first_name, :father_name, :grand_father_name,
               :date_of_birth, :marital_status, :phone, :city, :i_understand, :i_give_my_permission, presence: true
@@ -38,16 +38,15 @@ class Applicant < ApplicationRecord
     def self.import_applicants(file, academic_year)
       applicants = []
       CSV.foreach(file.path, :headers=>true) do |row|
-        first_name = row[0]
-        father_name = row[1]
-        grand_father_name = row[2]
-        gender = row[3]
-        email = row[4]
+        id_number = row[0]
+        first_name = row[1]
+        father_name = row[2]
+        grand_father_name = row[3]
+        gender = row[4]
         university = University.find_by(short_name: row[5])
         program = Program.find_by(code: row[6])
-        university = University.find_by(short_name: row[5])
           unless program.blank? or university.blank?
-            attrbts = {academic_year_id: academic_year, first_name: first_name, father_name: father_name,
+            attrbts = {application_id: id_number,academic_year_id: academic_year, first_name: first_name, father_name: father_name,
                        grand_father_name: grand_father_name, gender: gender, university_id: university.id,
                        program_id: program.id }
             applicant = Applicant.find_by(attrbts) || Applicant.new(attrbts)

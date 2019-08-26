@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'import_interview'
       post 'import_interview'
       get 'exam_detail'
+      get 'check_exam'
     end
   end
   resources :timers, path: 'countdown' do

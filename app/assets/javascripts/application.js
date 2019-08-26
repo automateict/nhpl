@@ -7,6 +7,7 @@
 //= require bootstrap-wysihtml5
 //= require applicants
 //= require users
+//= require exams
 //= require highcharts
 //= require chartkick
 //= require AdminBSBMaterialDesign/index

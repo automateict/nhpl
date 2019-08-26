@@ -1,0 +1,21 @@
+<% if user_signed_in? and current_user.has_role(User::INSTITUTION) %>
+<div class="menu">
+    <ul class="list">
+        <li class="header">MAIN MENU</li>
+        <li class="active">
+        <%= link_to root_path do %>
+            <i class="material-icons">home</i>
+            <span>Home</span>
+        <% end %>
+        </li>
+
+    <li>
+    <%= link_to applicants_path do %>
+        <i class="material-icons">people</i>
+        <span>Applications</span>
+    <% end %>
+    </li>
+
+    </ul>
+</div>
+<% end %>

@@ -11,16 +11,16 @@ class Exam < ApplicationRecord
     exams = []
     CSV.foreach(file.path, :headers=>true) do |row|
       applicant = Applicant.find_by(application_id: row[0])
-      email = row[1]
-      program = Program.find_by(code: row[2])
-      exam_result = row[3]
-      exam_out_of = row[4]
-		      attrbts = {applicant_id: applicant.id, exam_result: exam_result,
+      exam_result = row[1]
+      exam_out_of = row[2]
+      unless applicant.blank?
+        attrbts = {applicant_id: applicant.id, exam_result: exam_result,
 		           exam_out_of: exam_out_of }
-		      ex = Exam.find_by(applicant_id: applicant.id) || new
-		      ex.attributes = attrbts
-		      ex.save(validate: false)
-		      exams << ex
+        ex = Exam.find_by(applicant_id: applicant.id) || new
+        ex.attributes = attrbts
+        ex.save(validate: false)
+        exams << ex
+      end
     end
     return exams
   end
@@ -48,6 +48,10 @@ class Exam < ApplicationRecord
       end
     end
     return interviews
+  end
+
+  def result_percentage
+    (exam_result/exam_out_of) * 100
   end
 
   def exam_weight_percentage
