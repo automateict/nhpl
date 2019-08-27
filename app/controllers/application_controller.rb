@@ -3,9 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :set_application_calendar, :set_no_cache
 
   layout :set_layout
-  def after_sign_in_path_for(resource)
-    home_index_path
-  end
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|

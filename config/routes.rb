@@ -76,6 +76,9 @@ Rails.application.routes.draw do
     end
   end
 
+  authenticated :user do
+    root 'home#index', as: :authenticated_root
+  end
   get 'home/index'
   get 'home/check_exam_result'
   root to: 'home#check_exam_result'
