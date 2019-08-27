@@ -8,14 +8,11 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Applicant ID</th>
+            <th>Registration ID</th>
             <th>Applicant Name</th>
-            <th>Gender</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>University</th>
-            <th>Program</th>
-            <th>Application Status</th>
+            <th>Institution</th>
+            <th>Profession</th>
+            <th>Result</th>
             <th></th>
 
           </tr>
@@ -29,12 +26,9 @@
                 <td><%= counter %></td>
                 <td><%= applicant.application_id %></td>
                 <td><%= applicant.full_name %></td>
-                <td><%= applicant.gender %></td>
-                <td><%= applicant.user.email rescue nil %></td>
-                <td><%= applicant.phone %></td>
                 <td><%= applicant.university %></td>
                 <td><%= applicant.program %></td>
-                <td><%= applicant.application_status %></td>
+                <td><%= applicant.grading_status %></td>
                 <td><%= link_to 'Details', applicant %></td>
               </tr>
               <% counter += 1 %>

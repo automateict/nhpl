@@ -7,7 +7,7 @@ class Program < ApplicationRecord
 
 
     def ay_applicants_by_university_by_license_status(ay = AcademicYear.current, university, status)
-        ay.applicants.joins(:exam=>[:applicant=>:license_result]).where('applicants.program_id = ? and applicants.university_id = ? and result = ?',
+        ay.applicants.where('applicants.program_id = ? and applicants.university_id = ? and grading_status = ?',
                                                           self.id, university, status)
     end
 

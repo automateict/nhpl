@@ -21,7 +21,6 @@ Rails.application.routes.draw do
       get 'import_interview'
       post 'import_interview'
       get 'exam_detail'
-      get 'check_exam'
     end
   end
   resources :timers, path: 'countdown' do
@@ -53,6 +52,7 @@ Rails.application.routes.draw do
       get 'university_applicants_status_by_program'
       get 'applicants_status'
       get 'publish'
+      get 'check_exam'
     end
     member do
       get 'details'
@@ -77,6 +77,7 @@ Rails.application.routes.draw do
   end
 
   get 'home/index'
-  root to: 'home#index'
+  get 'home/check_exam_result'
+  root to: 'home#check_exam_result'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

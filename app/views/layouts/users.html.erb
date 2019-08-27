@@ -33,14 +33,33 @@
     </div>
 </div>
 <!-- #END# Page Loader -->
+<ul style="float:right; background: white; padding: 10px">
+  <span style="padding-right: 20px">
+  <%= link_to root_path do %>
+              <i class="material-icons">home</i>
+              <span>HOME</span>
+          <% end %>
+    </span>
+  <span style="padding-right: 20px">
+  <%= link_to new_user_session_path do %>
+      <i class="material-icons">person</i>
+      <span>SIGN IN</span>
+  <% end %>
+  </span>
+        </ul><br/><br/>
+<hr/>
     <div class="login-box">
         <div class="logo">
           <a><%= image_tag 'fdre.png', size: '40x40' %></a>
             <a href="javascript:void(0);">Federal Ministry of Health <br/>
               National Health Professionals Licensing Program</a>
         </div>
+      <div class="card">
+        <div class="body">
       <%= render partial: 'shared/flash_messages' %>
                 <%= yield %>
+        </div>
+      </div>
     </div>
 </body>
 

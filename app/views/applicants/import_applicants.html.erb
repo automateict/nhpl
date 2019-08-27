@@ -2,22 +2,22 @@
   <h5>Save applicants list in CSV format in the same order as follows:</h5>
 <table class="table">
   <tr>
-    <th>ID Number</th>
+    <th>Registraton ID</th>
     <th>First Name</th>
     <th>Father Name</th>
     <th>Grand Father Name</th>
-    <th>Gender</th>
-    <th>University Code</th>
-    <th>Program Code</th>
+    <th>Institution</th>
+    <th>Profession</th>
+    <th>Result</th>
   </tr>
   <tr>
     <td>0001</td>
     <td>AAA</td>
     <td>BBB</td>
     <th>CCC</th>
-    <td>Male</td>
-    <td>U1</td>
-    <td>P1</td>
+    <td>Addis Ababa University</td>
+    <td>General Medicine</td>
+    <td>Pass</td>
   </tr>
 </table>
 
@@ -40,26 +40,26 @@
   <table class="table table-bordered table-striped table-hover dataTable js-exportable">
     <thead>
     <tr>
+      <th>Registraton ID</th>
       <th>First Name</th>
       <th>Father Name</th>
       <th>Grand Father Name</th>
-      <th>Gender</th>
-      <th>Email</th>
-      <th>University Code</th>
-      <th>Program</th>
+      <th>Institution</th>
+      <th>Profession</th>
+      <th>Result</th>
     </tr>
     </thead>
 
     <tbody>
     <% @applicants.each do |applicant| %>
         <tr>
+          <td><%= applicant.application_id %></td>
           <td><%= applicant.first_name %></td>
           <td><%= applicant.father_name %></td>
           <td><%= applicant.grand_father_name %></td>
-          <td><%= applicant.gender %></td>
-          <td><%= applicant.applicant.user.email rescue nil %></td>
           <td><%= applicant.university %></td>
           <td><%= applicant.program %></td>
+          <td><%= applicant.grading_status %></td>
         </tr>
     <% end %>
     </tbody>

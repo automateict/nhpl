@@ -3,7 +3,7 @@
     <ul class="list">
         <li class="header">MAIN MENU</li>
         <li class="active">
-        <%= link_to root_path do %>
+        <%= link_to home_index_path do %>
             <i class="material-icons">home</i>
             <span>Home</span>
         <% end %>
@@ -74,32 +74,6 @@
         <span>Applications</span>
     <% end %>
     </li>
-
-      <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
-        <i class="material-icons">settings</i>
-        <span>Exam</span>
-      </a>
-      <ul class="ml-menu" style="display: none;">
-        <li>
-          <%= link_to exam_settings_path do %>
-              <i class="material-icons">layers</i>
-              <span>Exam Settings</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to exams_path do %>
-              <i class="material-icons">place</i>
-              <span>Exam Results</span>
-          <% end %>
-        </li>
-      </ul>
-
-      <%= link_to licensing_applicants_path do %>
-          <i class="material-icons">people</i>
-          <span>License Result</span>
-      <% end %>
-      </li>
-
     </ul>
 </div>
 <% end %>

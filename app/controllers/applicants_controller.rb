@@ -1,8 +1,21 @@
 class ApplicantsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:check_exam]
   load_and_authorize_resource
   before_action :set_applicant, only: [:show, :edit, :update, :destroy,:details]
 
+
+  def check_exam
+    @search_button_clicked = true
+    @applicant = nil
+    if !params[:id_number].blank?
+      @applicant = Applicant.find_by(application_id: params[:id_number])
+    end
+    if @applicant.blank? and !params[:first_name].blank? and !params[:father_name].blank? and !params[:grand_father_name].blank?
+      @applicant = Applicant.find_by(first_name: params[:first_name], father_name: params[:father_name],
+                                     grand_father_name: params[:grand_father_name])
+    end
+    render partial: '/applicants/exam_result'
+  end
   # GET /applicants
   # GET /applicants.json
   def index

@@ -1,0 +1,28 @@
+<div class="body">
+<% if @search_button_clicked==true %>
+  <% if !@applicant.blank? %>
+  <table class="table">
+    <tr>
+      <th>Full Name</th>
+      <td><%= @applicant.to_s %></td>
+    </tr>
+    <tr>
+      <th>Institution</th>
+      <td><%= @applicant.university %></td>
+    </tr>
+    <tr>
+      <th>Profession</th>
+      <td><%= @applicant.program %></td>
+    </tr>
+
+    <tr>
+      <th>Result</th>
+      <td><%= @applicant.grading_status %></td>
+    </tr>
+  </table>
+  <% else %>
+   <h4 class="alert alert-warning"> No exam result found with this registration ID or name</h4><br/>
+  <% end %>
+<% else %>
+<% end %>
+</div>

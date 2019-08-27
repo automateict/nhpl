@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   respond_to :html, :js, :json, :pdf
   before_action :set_application_calendar, :set_no_cache
 
+  layout :set_layout
+
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.json { head :forbidden, content_type: 'text/html' }
@@ -9,6 +11,8 @@ class ApplicationController < ActionController::Base
       format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
+
+  protected
 
   def set_no_cache
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
@@ -19,6 +23,12 @@ class ApplicationController < ActionController::Base
   def set_application_calendar
     ay = AcademicYear.current
     @application_calendar = ay.events.where('name = ?', 'Application').first rescue nil
+  end
+
+  def set_layout
+    unless current_user
+      return 'users'
+    end
   end
 
 end
