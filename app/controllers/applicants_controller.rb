@@ -6,8 +6,7 @@ class ApplicantsController < ApplicationController
 
   def check_exam
     @search_button_clicked = true
-    @applicant = Applicant.find_by(application_id: params[:id_number], first_name: params[:first_name], father_name: params[:father_name],
-                                     grand_father_name: params[:grand_father_name])
+    @applicant = Applicant.find_by(application_id: params[:id_number], first_name: params[:first_name], father_name: params[:father_name])
     render partial: '/applicants/exam_result'
   end
   # GET /applicants
