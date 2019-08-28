@@ -7,3 +7,4 @@
 //= require AdminBSBMaterialDesign/jquery-datatable/extensions/export/buttons.flash.min
 //= require AdminBSBMaterialDesign/jquery-datatable/extensions/export/buttons.html5.min
 //= require AdminBSBMaterialDesign/jquery-datatable/extensions/export/buttons.print.min
+//= require AdminBSBMaterialDesign/jquery-datatable/dataTables.responsive.min

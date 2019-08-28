@@ -1,10 +1,13 @@
-<table class="table table-bordered table-responsive">
+<table class="table table-bordered dataTable js-exportable">
+  <thead>
   <tr>
     <th></th>
     <% University.all.each do |u| %>
         <th><%= u %></th>
     <% end %>
   </tr>
+  </thead>
+  <tbody>
   <% Applicant::GRADING_STATUS.each do |gs| %>
       <tr>
         <th><%= gs %></th>
@@ -13,4 +16,5 @@
         <% end %>
       </tr>
   <% end %>
+  </tbody>
 </table>

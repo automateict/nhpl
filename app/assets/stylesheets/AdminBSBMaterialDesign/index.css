@@ -9,4 +9,5 @@
 *= require AdminBSBMaterialDesign/css/style
 *= require AdminBSBMaterialDesign/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap
 *= require AdminBSBMaterialDesign/css/themes/all-themes
+*= require AdminBSBMaterialDesign/responsive.bootstrap.min
 */

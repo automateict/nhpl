@@ -39,6 +39,12 @@ $(function () {
             data: {program: program},
             success: function(response){
                 $('#applicants_status_report').html(response)
+                $('.js-exportable').DataTable({
+                    responsive: true,
+                    retrieve: true,
+                    dom: '<"html5buttons"B>lTfgtip',
+                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                });
             }
         });
     })
