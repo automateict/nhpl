@@ -49,7 +49,7 @@ class Applicant < ApplicationRecord
             attrbts = {application_id: id_number,academic_year_id: academic_year, first_name: first_name, father_name: father_name,
                        grand_father_name: grand_father_name, grading_status: grading_status, university_id: university.id,
                        program_id: program.id }
-            applicant = Applicant.find_by(attrbts) || Applicant.new(attrbts)
+            applicant = Applicant.find_by(application_id: id_number) || Applicant.new(attrbts)
             applicant.attributes = attrbts
             applicant.save(validate: false)
             applicants << applicant
