@@ -19,11 +19,11 @@ class Applicant < ApplicationRecord
     has_one_attached :original_diploma
     has_one_attached :official_transcript
     has_one_attached :authenticated_document_from_herqa
-    belongs_to :exam_center, :class_name => 'University', :foreign_key => "exam_center_id"
+    belongs_to :exam_hub
 
     after_create :set_application_id
 
-    validates :gender, :first_name, :father_name, :grand_father_name,
+    validates :gender, :first_name, :father_name, :grand_father_name, :exam_hub_id,
               :date_of_birth, :marital_status, :phone, :city, :i_understand, :i_give_my_permission, presence: true
 
     validates :user_id, uniqueness: {scope: :academic_year_id,

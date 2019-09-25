@@ -28,12 +28,11 @@
   <h3>Educational Background</h3>
   <fieldset>
   <%= f.association :program, label: 'Department' %>
-  <%= f.association :university %>
+  <%= f.association :university, label: 'Name of your Institution' %>
   <div id='other_university'>
     <%= render partial: 'other_university' %>
   </div>
-  <%= f.input :university_type, collection: ['Public', 'Private'] %>
-  <%= f.input :qualification %>
+  <%= f.input :university_type, label: 'Institution Type', collection: ['Public', 'Private'] %>
   </fieldset>
 
 
@@ -47,7 +46,7 @@
 
   <h3>Terms and Conditions</h3>
   <fieldset>
-    <%= f.association :exam_center, collection: University.all %>
+    <%= f.association :exam_hub, label: 'Choose Exam Center' %>
   <%= f.input :do_you_have_needs_for_disability, as: :radio_buttons, collection: [['Yes', true], ['No', false]], wrapper: 'horizontal_form' %>
     <div id='disability'>
       <%= render partial: 'disability' %>

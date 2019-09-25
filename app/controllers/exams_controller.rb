@@ -24,9 +24,8 @@ class ExamsController < ApplicationController
   end
 
   def exam_detail
-    user = User.find(params[:user])
-    if user.current_application
-      @exam = user.current_application.published_exam
+    if current_user.current_application
+      @exam = current_user.current_application.published_exam
     end
     render 'show'
   end

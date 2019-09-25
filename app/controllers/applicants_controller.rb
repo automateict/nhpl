@@ -184,7 +184,7 @@ class ApplicantsController < ApplicationController
       params.require(:applicant).permit(:user_id, :academic_year_id, :first_name, :father_name, :grand_father_name, :gender, :date_of_birth,
                                         :place_of_birth, :marital_status, :nationality, :region_id, :city, :phone, :university_id,
                                         :other_university, :university_type, :qualification, :program_id, :do_you_have_needs_for_disability,
-                                        :disability, :i_understand, :i_give_my_permission, :exam_center_id,
+                                        :disability, :i_understand, :i_give_my_permission, :exam_hub_id,
                                         :passport_size_photo, :passport_or_admission_card, :original_diploma, :official_transcript, :authenticated_document_from_herqa)
     end
 end

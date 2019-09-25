@@ -49,23 +49,21 @@
             <td><%= @applicant.user.email rescue nil %></td>
           </tr>
           <tr>
-            <th>University</th>
+            <th>Your Institution</th>
             <td><%= @applicant.university %></td>
           </tr>
           <tr>
-            <th>Department</th>
-            <td><%= @applicant.program %></td>
-          </tr>
-          <tr>
-            <th>University Type</th>
+            <th>Institution Type</th>
             <td><%= @applicant.university_type %></td>
           </tr>
-          <tr>
-            <th>Qualification</th>
-            <td><%= @applicant.qualification %></td>
-          </tr>
+
+      <tr>
+        <th>Department</th>
+        <td><%= @applicant.program %></td>
+      </tr>
+
           <tr>
             <th>Exam Center</th>
-            <td><%= @applicant.exam_center %></td>
+            <td><%= @applicant.exam_hub %></td>
           </tr>
         </table>
