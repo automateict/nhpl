@@ -35,30 +35,12 @@
         <span>Documents</span>
       </h2>
       </div>
-      <% if @applicant.applicant_type == Applicant::LOCAL %>
         <p>
           <label>Passport Size Photo: </label> <%= image_tag @applicant.passport_size_photo rescue nil %>
         </p>
         <p>
-          <label>Passport or Admission Card: </label> <%= link_to 'Download', @applicant.passport_or_admission_card, download: '' %>
+          <label>Passport/Any Identification Card: </label> <%= link_to 'Download', @applicant.passport_or_admission_card rescue nil %>
         </p>
-      <% elsif @applicant.applicant_type == Applicant::INTERNATIONAL %>
-        <p>
-          <label>Passport Size Photo: </label> <%= image_tag @applicant.passport_size_photo rescue nil %>
-        </p>
-        <p>
-          <label>Passport or ID Card: </label> <%= link_to 'Download', @applicant.passport_or_admission_card, download: '' %>
-        </p>
-        <p>
-          <label>Original Diploma: </label> <%= link_to 'Download', @applicant.original_diploma, download: '' %>
-        </p>
-        <p>
-          <label>Official Transcript: </label> <%= link_to 'Download', @applicant.official_transcript, download: '' %>
-        </p>
-        <p>
-          <label>Authenticated Document from HERQA: </label> <%= link_to 'Download', @applicant.authenticated_document_from_herqa, download: '' %>
-        </p>
-      <% end %>
     </div>
   </div>
 </div>

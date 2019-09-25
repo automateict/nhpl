@@ -19,11 +19,11 @@ class Applicant < ApplicationRecord
     has_one_attached :original_diploma
     has_one_attached :official_transcript
     has_one_attached :authenticated_document_from_herqa
+    belongs_to :exam_center, :class_name => 'University', :foreign_key => "exam_center_id"
 
+    after_create :set_application_id
 
-    #after_create :set_application_id
-
-    validates :title, :gender, :first_name, :father_name, :grand_father_name,
+    validates :gender, :first_name, :father_name, :grand_father_name,
               :date_of_birth, :marital_status, :phone, :city, :i_understand, :i_give_my_permission, presence: true
 
     validates :user_id, uniqueness: {scope: :academic_year_id,
@@ -34,6 +34,11 @@ class Applicant < ApplicationRecord
     EXAM_TYPES = [MCQ = 'MCQ', OCQI='OCQI', MCQ_AND_OCQI = 'MCQ and OCQI']
 
     scope :complete, -> { where('status is true') }
+
+    def country_name
+      country = ISO3166::Country[nationality]
+      country.translations[I18n.locale.to_s] || country.name
+    end
 
     def self.import_applicants(file, academic_year)
       applicants = []
@@ -61,10 +66,10 @@ class Applicant < ApplicationRecord
 
     def set_application_id
       sno = id.to_s
-      while sno.length < 5
+      while sno.length < 3
        sno = '0' << sno
       end
-      update_attribute('application_id', university.short_name << sno)
+      update_attribute('application_id', university.short_name << program.code << sno << '/' << AcademicYear.current.code)
     end
 
     def publish_status
@@ -100,7 +105,7 @@ class Applicant < ApplicationRecord
     end
 
     def full_name
-      [title, first_name, father_name, grand_father_name].join(' ')
+      [first_name, father_name, grand_father_name].join(' ')
     end
 
     def self.match

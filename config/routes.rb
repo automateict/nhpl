@@ -81,6 +81,6 @@ Rails.application.routes.draw do
   end
   get 'home/index'
   get 'home/check_exam_result'
-  root to: 'home#check_exam_result'
+  root to: 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -4,14 +4,13 @@
     <span>Personal Information</span>
 </h2>
 </div>
+<br/>
+<div class="row">
+<div class="col-sm-6">
 <table class="table table-responsive">
   <tr>
-    <th> Application ID</th>
+    <th> Registration ID</th>
     <td><%= @applicant.application_id %></td>
-  </tr>
-  <tr>
-    <th>Title</th>
-    <td><%= @applicant.title %></td>
   </tr>
   <tr>
     <th>First Name</th>
@@ -39,27 +38,49 @@
     <td><%= @applicant.marital_status %></td>
   </tr>
 </table>
-
-<h5>Current Address</h5>
-<table class="table table-responsive">
-  <tr>
-    <th>Region</th>
-    <td><%= @applicant.region %></td>
-  </tr>
-  <tr>
-    <th>City</th>
-    <td><%= @applicant.city %></td>
-  </tr>
-  <tr>
-    <th>P.O.Box</th>
-    <td><%= @applicant.pobox %></td>
-  </tr>
-  <tr>
-    <th>Phone</th>
-    <td><%= @applicant.phone %></td>
-  </tr>
-  <tr>
-    <th>Email</th>
-    <td><%= @applicant.user.email rescue nil %></td>
-  </tr>
-</table>
+</div>
+<div class="col-sm-6 left_form">
+  <table class="table table-responsive">
+    <tr>
+      <th>Nationality</th>
+      <td><%= @applicant.country_name %></td>
+    </tr>
+    <tr>
+      <th>Region</th>
+      <td><%= @applicant.region %></td>
+    </tr>
+    <tr>
+      <th>City</th>
+      <td><%= @applicant.city %></td>
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <td><%= @applicant.phone %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= @applicant.user.email rescue nil %></td>
+    </tr>
+    <tr>
+      <th>University</th>
+      <td><%= @applicant.university %></td>
+    </tr>
+    <tr>
+      <th>Department</th>
+      <td><%= @applicant.program %></td>
+    </tr>
+    <tr>
+      <th>University Type</th>
+      <td><%= @applicant.university_type %></td>
+    </tr>
+    <tr>
+      <th>Qualification</th>
+      <td><%= @applicant.qualification %></td>
+    </tr>
+    <tr>
+      <th>Exam Center</th>
+      <td><%= @applicant.exam_center %></td>
+    </tr>
+  </table>
+</div>
+</div>

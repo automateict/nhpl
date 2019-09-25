@@ -1,7 +1,7 @@
 <% if current_user.admin? %>
     <div class="header">
       <h2>
-        Academic Years
+        Exam Rounds
       </h2>
     </div>
     <div class="body table-responsive">
@@ -9,6 +9,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Code</th>
       <th>Status</th>
       <th></th>
     </tr>
@@ -18,6 +19,7 @@
     <% @academic_years.each do |academic_year| %>
       <tr>
         <td><%= academic_year.name %></td>
+        <td><%= academic_year.code %></td>
         <td><%= academic_year.current_status %></td>
         <td><%= link_to 'Edit', edit_academic_year_path(academic_year) %></td>
       </tr>
@@ -26,6 +28,6 @@
 </table>
 <br>
 
-<%= link_to 'New Academic Year',  new_academic_year_path, class: 'btn btn-primary' %>
+<%= link_to 'Add Exam Round',  new_academic_year_path, class: 'btn btn-primary' %>
 <% end %>
 </div>

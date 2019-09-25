@@ -4,11 +4,11 @@ class AcademicYear < ApplicationRecord
     has_many :applicants
     has_many :program_quotas
 
-    validates :name, presence: true
+    validates :name, :code, presence: true
     
 
     def self.current
-        self.where('status = ?', true).first
+        self.where('status = ?', true).last
     end
 
     def current_status

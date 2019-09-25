@@ -71,6 +71,6 @@ class AcademicYearsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def academic_year_params
-      params.require(:academic_year).permit(:name, :status)
+      params.require(:academic_year).permit(:name, :code, :status)
     end
 end

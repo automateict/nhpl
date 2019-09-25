@@ -1,5 +1,3 @@
-<div class="card">
-  <div class="body">
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 <div class="msg">
     Enter your email address that you used to register. We'll send you an email with reset password instructions.
@@ -18,5 +16,3 @@
 <%= link_to "Sign In!", new_user_session_path %>
 </div>
 <% end %>
-  </div>
-</div>

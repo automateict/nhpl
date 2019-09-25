@@ -1,14 +1,3 @@
     <%= simple_fields_for :applicant, @applicant do |f| %>
-        <!-- Local -->
-        <% if @applicant_type == Applicant::LOCAL %>
-          <%= f.input :passport_size_photo, as: :file %>
-          <%= f.input :passport_or_admission_card, as: :file %>
-        <% elsif @applicant_type == Applicant::INTERNATIONAL  %>
-          <!-- International -->
-          <%= f.input :passport_size_photo, as: :file %>
-          <%= f.input :passport_or_admission_card, as: :file %>
-          <%= f.input :original_diploma, as: :file %>
-          <%= f.input :official_transcript, as: :file %>
-          <%= f.input :authenticated_document_from_herqa, label: 'Authenticated Document from HERQA', as: :file %>
-        <% end %>
+
     <% end %>
