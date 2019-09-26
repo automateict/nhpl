@@ -46,7 +46,7 @@
 
   <h3>Terms and Conditions</h3>
   <fieldset>
-    <%= f.association :exam_hub, label: 'Choose Exam Center' %>
+    <%= f.association :exam_hub, label: 'Choose Exam Town' %>
   <%= f.input :do_you_have_needs_for_disability, as: :radio_buttons, collection: [['Yes', true], ['No', false]], wrapper: 'horizontal_form' %>
     <div id='disability'>
       <%= render partial: 'disability' %>
