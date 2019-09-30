@@ -65,7 +65,7 @@ class Applicant < ApplicationRecord
 
 
     def set_application_id
-      sno = id.to_s
+      sno = program.applicants_count.to_s
       while sno.length < 3
        sno = '0' << sno
       end

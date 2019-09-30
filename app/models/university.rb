@@ -1,7 +1,7 @@
 class University < ApplicationRecord
     
     has_many :applicants
-    validates :name, presence: true
+    validates :name, :short_name, presence: true
 
 
     def to_s

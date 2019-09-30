@@ -3,8 +3,12 @@ class Program < ApplicationRecord
     has_many :program_quotas
     has_many :university_choices, through: :program_choices
     has_many :placements
-    validates :name, presence: true
+    validates :name, :code, presence: true
 
+
+    def applicants_count(ay=AcademicYear.current)
+        ay.applicants.where(program_id: self.id).count
+    end
 
     def ay_applicants_by_university_by_license_status(ay = AcademicYear.current, university, status)
         ay.applicants.where('applicants.program_id = ? and applicants.university_id = ? and grading_status = ?',
