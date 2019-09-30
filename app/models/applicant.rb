@@ -1,11 +1,8 @@
 class Applicant < ApplicationRecord
-    has_many :program_choices, dependent: :destroy
     belongs_to :user
     belongs_to :academic_year
     belongs_to :region, optional: true
     has_one :match_result
-    has_one :applicant_exam_hub, dependent: :destroy
-    has_one :applicant_service,  dependent: :destroy
     has_one :applicant_declaration
     has_many :declaration_details, through: :applicant_declaration
     has_one :exam
