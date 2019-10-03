@@ -23,7 +23,7 @@
 
 <div class="body">
   <%= simple_form_for :import_applicant, :multipart=>true do |f| %>
-      <%= f.input :academic_year, collection: [AcademicYear.current] %>
+      <%= f.input :academic_year %>
       <%= f.input :applicants_csv_file, as: :file %>
     <hr/>
     <%= submit_tag 'Import', class: 'btn btn-primary' %>
