@@ -18,7 +18,7 @@ class Applicant < ApplicationRecord
     has_one_attached :authenticated_document_from_herqa
     belongs_to :exam_hub
 
-    after_create :set_application_id
+    after_create :set_application_id unless :registration_id_exist
 
     validates :gender, :first_name, :father_name, :grand_father_name, :exam_hub_id,
               :date_of_birth, :marital_status, :phone, :city, :i_understand, :i_give_my_permission, presence: true
@@ -37,6 +37,9 @@ class Applicant < ApplicationRecord
       country.translations[I18n.locale.to_s] || country.name
     end
 
+    def registration_id_exist
+      return !application_id.blank?
+    end
     def self.import_applicants(file, academic_year)
       applicants = []
       CSV.foreach(file.path, :headers=>true) do |row|
