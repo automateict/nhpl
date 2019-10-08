@@ -17,7 +17,7 @@ class Applicant < ApplicationRecord
 
     after_create :set_application_id if :registration_id_blank
 
-    validates :gender, :first_name, :father_name, :grand_father_name, :exam_hub_id,
+    validates :gender, :first_name, :father_name, :grand_father_name, :exam_hub_id, :passport_size_photo, :applicant_type, :passport_or_admission_card,
               :date_of_birth, :marital_status, :phone, :city, :i_understand, :i_give_my_permission, presence: true
 
     validates :user_id, uniqueness: {scope: :academic_year_id,
