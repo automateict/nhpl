@@ -1,6 +1,6 @@
 <% if @disability == true %>
     <%= simple_fields_for :applicant, @applicant do |f| %>
-        <%= f.input :disability, collection: ["Pregnant", "other"] %>
+        <%= f.input :disability, collection: ["Vision", "Hearing", "Speech", "Physical", "Other"] %>
     <% end %>
 <% else %>
 
