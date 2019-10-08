@@ -13,9 +13,6 @@ class Applicant < ApplicationRecord
     has_one_attached :passport_size_photo
     has_one_attached :passport_or_admission_card
 
-    has_one_attached :original_diploma
-    has_one_attached :official_transcript
-    has_one_attached :authenticated_document_from_herqa
     belongs_to :exam_hub
 
     after_create :set_application_id unless :registration_id_exist
