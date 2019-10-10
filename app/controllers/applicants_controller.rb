@@ -181,7 +181,7 @@ class ApplicantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def applicant_params
-      params.require(:applicant).permit(:user_id, :academic_year_id, :first_name, :father_name, :grand_father_name, :gender, :date_of_birth,
+      params.require(:applicant).permit(:user_id, :academic_year_id, :first_name, :father_name, :grand_father_name, :gender, :date_of_birth, :applicant_type,
                                         :place_of_birth, :marital_status, :nationality, :region_id, :city, :phone, :university_id,
                                         :other_university, :university_type, :qualification, :program_id, :do_you_have_needs_for_disability,
                                         :disability, :i_understand, :i_give_my_permission, :exam_hub_id,
