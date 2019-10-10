@@ -33,14 +33,20 @@
     </div>
 </div>
 <!-- #END# Page Loader -->
-<ul style="float:right; background: white; padding: 10px">
+<ul class="right">
   <span style="padding-right: 20px">
   <%= link_to root_path do %>
-              <i class="material-icons">home</i>
-              <span>HOME</span>
+
+              <span class="btn btn-default"><i class="material-icons">home</i> HOME</span>
           <% end %>
     </span>
-        </ul><br/><br/>
+  <span style="padding-right: 20px">
+  <%= link_to home_check_exam_result_path do %>
+
+      <span class="btn btn-default"><i class="material-icons">info_outline</i> CHECK LICENSING EXAM RESULT</span>
+  <% end %>
+  </span>
+</ul><br/><br/>
 <hr/>
     <div class="login-box">
         <div class="logo">
