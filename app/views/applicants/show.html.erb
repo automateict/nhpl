@@ -36,7 +36,7 @@
       </h2>
       </div>
         <p>
-          <label>Passport Size Photo: </label> <%= image_tag @applicant.passport_size_photo rescue nil %>
+          <label>Passport Size Photo: </label> <%= link_to 'Download', @applicant.passport_size_photo rescue nil %>
         </p>
         <p>
           <label>Passport/Any Identification Card: </label> <%= link_to 'Download', @applicant.passport_or_admission_card rescue nil %>
