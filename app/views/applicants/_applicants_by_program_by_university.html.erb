@@ -2,16 +2,16 @@
   <thead>
   <tr>
   <th></th>
-  <% University.all.each do |u| %>
-    <th><%= u %></th>
+    <% Program.all.each do |p| %>
+    <th><%= p %></th>
   <% end %>
   </tr>
   </thead>
   <tbody>
-  <% Program.all.each do |p| %>
+  <% University.all.each do |u| %>
   <tr>
-    <th><%= p %></th>
-    <% University.all.each do |u| %>
+    <th><%= u %></th>
+    <% Program.all.each do |p| %>
       <th><%= u.ay_applicants_by_program(p.id).count %></th>
     <% end %>
   </tr>

@@ -2,16 +2,16 @@
   <thead>
   <tr>
     <th></th>
-    <% University.all.each do |u| %>
-        <th><%= u %></th>
+    <% Applicant::GRADING_STATUS.each do |gs| %>
+        <th><%= gs %></th>
     <% end %>
   </tr>
   </thead>
   <tbody>
-  <% Applicant::GRADING_STATUS.each do |gs| %>
+  <% University.all.each do |u| %>
       <tr>
-        <th><%= gs %></th>
-        <% University.all.each do |u| %>
+        <th><%= u %></th>
+        <% Applicant::GRADING_STATUS.each do |gs| %>
             <th><%= @program.ay_applicants_by_university_by_license_status(u.id, gs).count rescue nil %></th>
         <% end %>
       </tr>
