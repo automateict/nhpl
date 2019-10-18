@@ -33,6 +33,14 @@
     </div>
 </div>
 <!-- #END# Page Loader -->
+<h2 class="logo">
+  <center>
+  <a><%= image_tag 'fdre.png', size: '40x40' %></a>
+  <a href="javascript:void(0);">Federal Ministry of Health <br/>
+    <h3>Health Professionals Competency Assessment & Licensure Directorate</h3></a>
+  </center>
+</h2>
+<br/>
 <ul class="right">
   <span style="padding-right: 20px">
   <%= link_to root_path do %>
@@ -49,11 +57,6 @@
 </ul><br/><br/>
 <hr/>
     <div class="login-box">
-        <div class="logo">
-          <a><%= image_tag 'fdre.png', size: '40x40' %></a>
-            <a href="javascript:void(0);">Federal Ministry of Health <br/>
-              <small>Health Professionals Competency Assessment & Licensure Directorate</small></a>
-        </div>
       <div class="card">
         <div class="body">
       <%= render partial: 'shared/flash_messages' %>

@@ -1,4 +1,8 @@
 <div class="row">
+  <div class="col-sm-8">
+    <%= raw ApplicationInstruction.first.try(:content) %>
+  </div>
+<div class="col-sm-4 card">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <h3>Sign in to start/continue registration</h3>
       <hr/>
@@ -37,4 +41,5 @@
   </div>
 </div>
 
+</div>
 </div>
