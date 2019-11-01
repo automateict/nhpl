@@ -10,8 +10,10 @@
             <th>#</th>
             <th>Registration ID</th>
             <th>Applicant Name</th>
+            <th>Sex</th>
             <th>Institution</th>
             <th>Profession</th>
+            <th>Exam Town</th>
             <th>Result</th>
             <th></th>
 
@@ -26,8 +28,10 @@
                 <td><%= counter %></td>
                 <td><%= applicant.application_id %></td>
                 <td><%= applicant.full_name %></td>
+                <td><%= applicant.gender %></td>
                 <td><%= applicant.university %></td>
                 <td><%= applicant.program %></td>
+                <td><%= applicant.exam_hub %></td>
                 <td><%= applicant.grading_status %></td>
                 <td><%= link_to 'Details', applicant %></td>
               </tr>
