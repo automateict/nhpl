@@ -1,3 +1,33 @@
 
 <h3>Check Your Licensing Exam Result</h3>
       <hr/>
+       <div class="row">
+        <label class="col-sm-3 col-form-label">Registration ID</label>
+        <div class="col-sm-9">
+          <%= text_field_tag :id_number, nil, class: 'form-control', id: 'exam_result_id_number' %>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-3 col-form-label">First Name</label>
+        <div class="col-sm-9">
+          <%= text_field_tag :first_name, nil, class: 'form-control', id: 'exam_result_first_name' %>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-3 col-form-label">Father Name</label>
+        <div class="col-sm-9">
+          <%= text_field_tag :father_name, nil, class: 'form-control', id: 'exam_result_father_name' %>
+        </div>
+      </div>
+       <div class="row">
+       <div class="col-xs-8 p-t-5">
+       </div>
+       <div class="col-xs-4">
+         <%= submit_tag "SEARCH",class: "btn btn-block bg-pink waves-effect", id: 'exam_search_button'  %>
+       </div>
+       </div>
+    </div>
+
+    <div id="exam_result">
+      <%= render partial: '/applicants/exam_result'  %>
+    </div>
