@@ -16,7 +16,7 @@ gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap-growl-rails'
 gem 'country_select', '~> 4.0'
 gem 'ethiopic_date', '0.0.18'
-gem 'nokogiri', '~> 1.8.1'
+gem 'nokogiri', '~> 1.10.7'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
 # Use mysql as the database for Active Record
