@@ -7,7 +7,7 @@ end
 gem 'fastercsv'
 gem 'devise'
 gem 'cancancan', '~> 2.0'
-gem 'simple_form', '~> 4.0', '>= 4.0.1'
+gem 'simple_form', '~> 5.0'
 gem "nested_form"
 gem "paperclip", "~> 5.2.1"
 gem 'wicked_pdf', '~> 1.1'
