@@ -25,7 +25,7 @@ class User < ApplicationRecord
   def applicants
     applicants = []
     if admin?
-      applicants = AcademicYear.current.applicants rescue nil
+      applicants = AcademicYear.current.applicants
     elsif has_role(User::INSTITUTION)
       applicants = AcademicYear.current.applicants.where('university_id = ?', university_id)
     end
