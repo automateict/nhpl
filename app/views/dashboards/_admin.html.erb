@@ -9,7 +9,7 @@
               </div>
               <div class="content">
                 <div class="text">Applicants</div>
-                <div class="number"><%= current_user.applicants.count  %></div>
+                <div class="number"><%= current_user.applicants.count rescue nil %></div>
               </div>
             </div>
           </div>

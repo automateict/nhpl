@@ -37,6 +37,7 @@ class Applicant < ApplicationRecord
     def registration_id_blank
       application_id.blank?
     end
+
     def self.import_applicants(file, academic_year)
       applicants = []
       CSV.foreach(file.path, :headers=>true) do |row|
@@ -60,10 +61,9 @@ class Applicant < ApplicationRecord
       return applicants
     end
 
-
     def set_application_id
       sno = program.applicants_count.to_s
-      while sno.length < 3
+      while sno.length < 4
        sno = '0' << sno
       end
       update_attribute('application_id', university.short_name << program.code << sno << '/' << AcademicYear.current.code)
