@@ -22,7 +22,7 @@ gem 'rails', '~> 5.2.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 5.6'
 # Use SCSS for stylesheets
 gem 'therubyracer'  # If using Ruby
 gem 'jquery-rails'  # If using Bootstrap's JS plugins.
